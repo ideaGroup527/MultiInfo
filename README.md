@@ -2,6 +2,8 @@
 多元信息挂接系统
 
 每次提交都必须写注释，还有在新增java文件上设置自动注释，参见http://blog.csdn.net/shiyuezhong/article/details/8450578
+
+
 /**   
 * @Title: ${file_name} 
 * @Package ${package_name} 
