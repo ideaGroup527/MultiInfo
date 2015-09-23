@@ -13,3 +13,5 @@
 * @version V1.0   
 */
 格式如上
+
+自己从branch拉一条分支，每次提交都提交到branch。
