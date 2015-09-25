@@ -276,6 +276,7 @@ public class ExportExcelUtil {
 		try {
 			inp = new FileInputStream(file);
 			wb = WorkbookFactory.create(inp);
+			inp.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
