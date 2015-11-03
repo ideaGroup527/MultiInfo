@@ -83,10 +83,10 @@
             <tx:method name="*" read-only="true" /> -->
         </tx:attributes>
     </tx:advice> 
-    <aop:config expose-proxy="true">
-     <!--  只对业务逻辑层实施事务 -->
+<!--     <aop:config expose-proxy="true">
+      只对业务逻辑层实施事务
         <aop:pointcut id="txPointcut" expression="execution(* com.zxrc.ibatisTest.service..*.*(..))" />
         <aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut"/>
-    </aop:config>
+    </aop:config> -->
     
 </beans>

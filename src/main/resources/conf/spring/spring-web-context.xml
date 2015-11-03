@@ -11,6 +11,7 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.0.xsd">
 
 	<context:component-scan base-package="org.jmu.multiinfo.module" />
+	<context:component-scan base-package="org.jmu.multiinfo.common.controller" />
 <mvc:annotation-driven />
 	<!-- 静态文件 css+-->
 	<mvc:default-servlet-handler />

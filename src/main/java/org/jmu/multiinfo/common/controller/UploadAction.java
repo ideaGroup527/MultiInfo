@@ -35,6 +35,7 @@ public class UploadAction {
 	@ResponseBody
 	public Map<String, Object> uploadFile(HttpServletRequest request,
 			HttpSession session,@RequestParam("data_file") MultipartFile file,HttpServletResponse response) throws Exception {
+		System.out.println("asd");
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(file.isEmpty()) return null;
 		String realPath = request.getSession().getServletContext()
@@ -56,6 +57,7 @@ public class UploadAction {
 					file.getBytes());
 		}
 		if(fileLocal!=null){
+			session.setAttribute("path", filePath);
 			response.sendRedirect("/MultiInfo/data-select.html");
 		}
 		return map;
