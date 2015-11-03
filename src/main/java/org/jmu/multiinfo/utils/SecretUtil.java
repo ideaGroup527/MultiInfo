@@ -38,9 +38,9 @@ import sun.misc.BASE64Encoder;
  * 
 * @Title: SecretUtil.java 
 * @Package org.jmu.multiinfo.utils 
-* @Description: ¼ÓÃÜ½âÃÜutil
+* @Description: åŠ å¯†è§£å¯†util
 * @author  <a href="mailto:www_1350@163.com">Absurd</a>
-* @date 2015Äê9ÔÂ23ÈÕ ÏÂÎç5:08:57 
+* @date 2015å¹´9æœˆ23æ—¥ ä¸‹åˆ5:08:57 
 * @version V1.0
  */
 public class SecretUtil {
@@ -48,7 +48,7 @@ public class SecretUtil {
     public static final String KEY_MD5 = "MD5";
  
     /**
-     * MACËã·¨¿ÉÑ¡ÒÔÏÂ¶àÖÖËã·¨
+     * MACç®—æ³•å¯é€‰ä»¥ä¸‹å¤šç§ç®—æ³•
      * 
      * <pre>
      * HmacMD5 
@@ -67,15 +67,15 @@ public class SecretUtil {
     
     public static final String KEY_RSA_SIGN="MD5withRSA";
     
-    public static final String KEY_RSA_PUBLIC = "RSAPublicKey";//¹«Ô¿
-    public static final String KEY_RSA_PRIVATE = "RSAPrivateKey";//Ë½Ô¿
+    public static final String KEY_RSA_PUBLIC = "RSAPublicKey";//å…¬é’¥
+    public static final String KEY_RSA_PRIVATE = "RSAPrivateKey";//ç§é’¥
     
     public static final String SEC_PRO_LOC = "secret/secret.properties";
     
     public static final String PRO_SEC_PASS = "secret.password";
     		
     /***
-     * ¶ÁÈ¡ÅäÖÃÎÄ¼ş
+     * è¯»å–é…ç½®æ–‡ä»¶
      * @return
      * @throws IOException
      */
@@ -89,7 +89,7 @@ public class SecretUtil {
     
     
     /***
-     * ¶ÁÈ¡ÃÜÔ¿
+     * è¯»å–å¯†é’¥
      * @return
      * @throws IOException
      */
@@ -100,7 +100,7 @@ public class SecretUtil {
     }
     		
     /**
-     * BASE64½âÃÜ
+     * BASE64è§£å¯†
      * 
      * @param key
      * @return
@@ -111,7 +111,7 @@ public class SecretUtil {
     }
  
     /**
-     * BASE64¼ÓÃÜ
+     * BASE64åŠ å¯†
      * 
      * @param key
      * @return
@@ -122,7 +122,7 @@ public class SecretUtil {
     }
  
     /**
-     * MD5¼ÓÃÜ(ĞÅÏ¢ÕªÒªËã·¨)
+     * MD5åŠ å¯†(ä¿¡æ¯æ‘˜è¦ç®—æ³•)
      * 
      * @param data
      * @return byte[]
@@ -135,9 +135,9 @@ public class SecretUtil {
     }
  
     /***
-     * MD5 ¼ÓÃÜ(ĞÅÏ¢ÕªÒªËã·¨)
+     * MD5 åŠ å¯†(ä¿¡æ¯æ‘˜è¦ç®—æ³•)
      * @param data
-     * @return Ê®Áù½øÖÆ
+     * @return åå…­è¿›åˆ¶
      * @throws Exception
      */
     public static String encryptMD5ToHex(byte[] data) throws Exception{
@@ -145,7 +145,7 @@ public class SecretUtil {
     }
     
     /**
-     * SHA¼ÓÃÜ(°²È«É¢ÁĞËã·¨)
+     * SHAåŠ å¯†(å®‰å…¨æ•£åˆ—ç®—æ³•)
      * 
      * @param data
      * @return byte[]
@@ -158,9 +158,9 @@ public class SecretUtil {
     }
  
     /***
-     * SHA ¼ÓÃÜ(°²È«É¢ÁĞËã·¨)
+     * SHA åŠ å¯†(å®‰å…¨æ•£åˆ—ç®—æ³•)
      * @param data
-     * @return Ê®Áù½øÖÆ
+     * @return åå…­è¿›åˆ¶
      * @throws Exception
      */
     public static String encryptSHAToHex(byte[] data) throws Exception{
@@ -168,7 +168,7 @@ public class SecretUtil {
     }
     
     /***
-     * DES¼ÓÃÜ(Êı¾İ¼ÓÃÜËã·¨/¶Ô³Æ)
+     * DESåŠ å¯†(æ•°æ®åŠ å¯†ç®—æ³•/å¯¹ç§°)
      * @param data
      * @return
      * @throws Exception
@@ -176,44 +176,44 @@ public class SecretUtil {
     public static byte[] encryptDES(byte[] data) throws Exception {
     	 SecureRandom random = new SecureRandom();  
     	 DESKeySpec desKey = new DESKeySpec(getProSecPass().getBytes());  
-    	//´´½¨Ò»¸öÃÜ³×¹¤³§£¬È»ºóÓÃËü°ÑDESKeySpec×ª»»³É  
+    	//åˆ›å»ºä¸€ä¸ªå¯†åŒ™å·¥å‚ï¼Œç„¶åç”¨å®ƒæŠŠDESKeySpecè½¬æ¢æˆ  
          SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(KEY_DES);  
          SecretKey securekey = keyFactory.generateSecret(desKey);  
-         //Cipher¶ÔÏóÊµ¼ÊÍê³É¼ÓÃÜ²Ù×÷  
+         //Cipherå¯¹è±¡å®é™…å®ŒæˆåŠ å¯†æ“ä½œ  
          Cipher cipher = Cipher.getInstance(KEY_DES);  
-         //ÓÃÃÜ³×³õÊ¼»¯Cipher¶ÔÏó  
+         //ç”¨å¯†åŒ™åˆå§‹åŒ–Cipherå¯¹è±¡  
          cipher.init(Cipher.ENCRYPT_MODE, securekey, random);  
-         //ÏÖÔÚ£¬»ñÈ¡Êı¾İ²¢¼ÓÃÜ  
-         //ÕıÊ½Ö´ĞĞ¼ÓÃÜ²Ù×÷  
+         //ç°åœ¨ï¼Œè·å–æ•°æ®å¹¶åŠ å¯†  
+         //æ­£å¼æ‰§è¡ŒåŠ å¯†æ“ä½œ  
          return cipher.doFinal(data);  
     }
     
     /***
-     * DES½âÃÜ(Êı¾İ¼ÓÃÜËã·¨/¶Ô³Æ)
+     * DESè§£å¯†(æ•°æ®åŠ å¯†ç®—æ³•/å¯¹ç§°)
      * @param data
      * @param password
      * @return
      * @throws Exception
      */
     public static byte[] decryptDES(byte[] data) throws Exception {
-    	 // DESËã·¨ÒªÇóÓĞÒ»¸ö¿ÉĞÅÈÎµÄËæ»úÊıÔ´  
+    	 // DESç®—æ³•è¦æ±‚æœ‰ä¸€ä¸ªå¯ä¿¡ä»»çš„éšæœºæ•°æº  
         SecureRandom random = new SecureRandom();  
-        // ´´½¨Ò»¸öDESKeySpec¶ÔÏó  
+        // åˆ›å»ºä¸€ä¸ªDESKeySpecå¯¹è±¡  
         DESKeySpec desKey = new DESKeySpec(getProSecPass().getBytes());  
-        // ´´½¨Ò»¸öÃÜ³×¹¤³§  
+        // åˆ›å»ºä¸€ä¸ªå¯†åŒ™å·¥å‚  
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(KEY_DES);  
-        // ½«DESKeySpec¶ÔÏó×ª»»³ÉSecretKey¶ÔÏó  
+        // å°†DESKeySpecå¯¹è±¡è½¬æ¢æˆSecretKeyå¯¹è±¡  
         SecretKey securekey = keyFactory.generateSecret(desKey);  
-        // Cipher¶ÔÏóÊµ¼ÊÍê³É½âÃÜ²Ù×÷  
+        // Cipherå¯¹è±¡å®é™…å®Œæˆè§£å¯†æ“ä½œ  
         Cipher cipher = Cipher.getInstance(KEY_DES);  
-        // ÓÃÃÜ³×³õÊ¼»¯Cipher¶ÔÏó  
+        // ç”¨å¯†åŒ™åˆå§‹åŒ–Cipherå¯¹è±¡  
         cipher.init(Cipher.DECRYPT_MODE, securekey, random);  
-        // ÕæÕı¿ªÊ¼½âÃÜ²Ù×÷  
+        // çœŸæ­£å¼€å§‹è§£å¯†æ“ä½œ  
         return cipher.doFinal(data);  
    }
     
     /***
-     * RSA³õÊ¼»¯ÃÜÔ¿(·Ç¶Ô³Æ)
+     * RSAåˆå§‹åŒ–å¯†é’¥(éå¯¹ç§°)
      * @return
      * @throws Exception
      */
@@ -222,9 +222,9 @@ public class SecretUtil {
         keyPairGenerator.initialize(1024);
         KeyPair keyPair = keyPairGenerator.generateKeyPair();
          
-        //¹«Ô¿
+        //å…¬é’¥
         RSAPublicKey publicKey = (RSAPublicKey) keyPair.getPublic();
-        //Ë½Ô¿
+        //ç§é’¥
         RSAPrivateKey privateKey =  (RSAPrivateKey) keyPair.getPrivate();
          
         Map<String,Object> keyMap = new HashMap<String, Object>(2);
@@ -234,7 +234,7 @@ public class SecretUtil {
     }
     
     /***
-     * È¡µÃRSA¹«Ô¿£¬²¢×ª»¯ÎªStringÀàĞÍ
+     * å–å¾—RSAå…¬é’¥ï¼Œå¹¶è½¬åŒ–ä¸ºStringç±»å‹
      * @param keyMap
      * @return
      * @throws Exception
@@ -246,7 +246,7 @@ public class SecretUtil {
     
     
     /***
-     * È¡µÃRSAË½Ô¿£¬²¢×ª»¯ÎªStringÀàĞÍ
+     * å–å¾—RSAç§é’¥ï¼Œå¹¶è½¬åŒ–ä¸ºStringç±»å‹
      * @param keyMap
      * @return
      * @throws Exception
@@ -257,21 +257,21 @@ public class SecretUtil {
     }
     
     /***
-     * RSAÓÃË½Ô¿¼ÓÃÜ(·Ç¶Ô³Æ)
+     * RSAç”¨ç§é’¥åŠ å¯†(éå¯¹ç§°)
      * @param data
      * @param key
      * @return
      * @throws Exception
      */
     public static byte[] encryptRSAByPrivateKey(byte[] data,String key)throws Exception{
-        //½âÃÜÃÜÔ¿
+        //è§£å¯†å¯†é’¥
         byte[] keyBytes = decryptBASE64(key);
-        //È¡Ë½Ô¿
+        //å–ç§é’¥
         PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_RSA);
         Key privateKey = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
          
-        //¶ÔÊı¾İ¼ÓÃÜ
+        //å¯¹æ•°æ®åŠ å¯†
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
          
@@ -279,20 +279,20 @@ public class SecretUtil {
     }
  
     /***
-     * RSAÓÃË½Ô¿½âÃÜ(·Ç¶Ô³Æ)
+     * RSAç”¨ç§é’¥è§£å¯†(éå¯¹ç§°)
      * @param data
      * @param key
      * @return
      * @throws Exception
      */
     public static byte[] decryptRSAByPrivateKey(byte[] data,String key)throws Exception{
-        //¶ÔË½Ô¿½âÃÜ
+        //å¯¹ç§é’¥è§£å¯†
         byte[] keyBytes = decryptBASE64(key);
          
         PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_RSA);
         Key privateKey = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
-        //¶ÔÊı¾İ½âÃÜ
+        //å¯¹æ•°æ®è§£å¯†
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, privateKey);
          
@@ -301,21 +301,21 @@ public class SecretUtil {
     
     
     /***
-     * RSAÓÃ¹«Ô¿¼ÓÃÜ(·Ç¶Ô³Æ)
+     * RSAç”¨å…¬é’¥åŠ å¯†(éå¯¹ç§°)
      * @param data
      * @param key
      * @return
      * @throws Exception
      */
     public static byte[] encryptRSAByPublicKey(byte[] data,String key)throws Exception{
-        //¶Ô¹«Ô¿½âÃÜ
+        //å¯¹å…¬é’¥è§£å¯†
         byte[] keyBytes = decryptBASE64(key);
-        //È¡¹«Ô¿
+        //å–å…¬é’¥
         X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_RSA);
         Key publicKey = keyFactory.generatePublic(x509EncodedKeySpec);
          
-        //¶ÔÊı¾İ½âÃÜ
+        //å¯¹æ•°æ®è§£å¯†
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, publicKey);
          
@@ -323,20 +323,20 @@ public class SecretUtil {
     }
     
     /***
-     * RSAÓÃ¹«Ô¿½âÃÜ(·Ç¶Ô³Æ)
+     * RSAç”¨å…¬é’¥è§£å¯†(éå¯¹ç§°)
      * @param data
      * @param key
      * @return
      * @throws Exception
      */
     public static byte[] decryptRSAByPublicKey(byte[] data,String key)throws Exception{
-        //¶ÔË½Ô¿½âÃÜ
+        //å¯¹ç§é’¥è§£å¯†
         byte[] keyBytes = decryptBASE64(key);
         X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(keyBytes);
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_RSA);
         Key publicKey = keyFactory.generatePublic(x509EncodedKeySpec);
          
-        //¶ÔÊı¾İ½âÃÜ
+        //å¯¹æ•°æ®è§£å¯†
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.DECRYPT_MODE, publicKey);
          
@@ -345,22 +345,22 @@ public class SecretUtil {
     
     
     /***
-     * RSAÓÃË½Ô¿¶ÔĞÅÏ¢Éú³ÉÊı×ÖÇ©Ãû
+     * RSAç”¨ç§é’¥å¯¹ä¿¡æ¯ç”Ÿæˆæ•°å­—ç­¾å
      * @param data
      * @param privateKey
      * @return
      * @throws Exception
      */
     public static String signRSA(byte[] data,String privateKey)throws Exception{
-        //½âÃÜË½Ô¿
+        //è§£å¯†ç§é’¥
         byte[] keyBytes = decryptBASE64(privateKey);
-        //¹¹ÔìPKCS8EncodedKeySpec¶ÔÏó
+        //æ„é€ PKCS8EncodedKeySpecå¯¹è±¡
         PKCS8EncodedKeySpec pkcs8EncodedKeySpec = new PKCS8EncodedKeySpec(keyBytes);
-        //Ö¸¶¨¼ÓÃÜËã·¨
+        //æŒ‡å®šåŠ å¯†ç®—æ³•
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_RSA);
-        //È¡Ë½Ô¿³×¶ÔÏó
+        //å–ç§é’¥åŒ™å¯¹è±¡
         PrivateKey privateKey2 = keyFactory.generatePrivate(pkcs8EncodedKeySpec);
-        //ÓÃË½Ô¿¶ÔĞÅÏ¢Éú³ÉÊı×ÖÇ©Ãû
+        //ç”¨ç§é’¥å¯¹ä¿¡æ¯ç”Ÿæˆæ•°å­—ç­¾å
         Signature signature = Signature.getInstance(KEY_RSA_SIGN);
         signature.initSign(privateKey2);
         signature.update(data);
@@ -370,7 +370,7 @@ public class SecretUtil {
     
     
     /***
-     * RSAĞ£ÑéÊı×ÖÇ©Ãû
+     * RSAæ ¡éªŒæ•°å­—ç­¾å
      * @param data
      * @param publicKey
      * @param sign
@@ -378,25 +378,25 @@ public class SecretUtil {
      * @throws Exception
      */
     public static boolean verifyRSA(byte[] data,String publicKey,String sign)throws Exception{
-        //½âÃÜ¹«Ô¿
+        //è§£å¯†å…¬é’¥
         byte[] keyBytes = decryptBASE64(publicKey);
-        //¹¹ÔìX509EncodedKeySpec¶ÔÏó
+        //æ„é€ X509EncodedKeySpecå¯¹è±¡
         X509EncodedKeySpec x509EncodedKeySpec = new X509EncodedKeySpec(keyBytes);
-        //Ö¸¶¨¼ÓÃÜËã·¨
+        //æŒ‡å®šåŠ å¯†ç®—æ³•
         KeyFactory keyFactory = KeyFactory.getInstance(KEY_RSA);
-        //È¡¹«Ô¿³×¶ÔÏó
+        //å–å…¬é’¥åŒ™å¯¹è±¡
         PublicKey publicKey2 = keyFactory.generatePublic(x509EncodedKeySpec);
          
         Signature signature = Signature.getInstance(KEY_RSA_SIGN);
         signature.initVerify(publicKey2);
         signature.update(data);
-        //ÑéÖ¤Ç©ÃûÊÇ·ñÕı³£
+        //éªŒè¯ç­¾åæ˜¯å¦æ­£å¸¸
         return signature.verify(decryptBASE64(sign));
          
     }
     
     /**
-     * ³õÊ¼»¯HMACÃÜÔ¿
+     * åˆå§‹åŒ–HMACå¯†é’¥
      * 
      * @return
      * @throws Exception
@@ -408,7 +408,7 @@ public class SecretUtil {
     }
  
     /**
-     * HMAC¼ÓÃÜ(É¢ÁĞÏûÏ¢¼ø±ğÂë)
+     * HMACåŠ å¯†(æ•£åˆ—æ¶ˆæ¯é‰´åˆ«ç )
      * 
      * @param data
      * @return
@@ -424,14 +424,14 @@ public class SecretUtil {
     
    
     /***
-     * ×ª16½øÖÆ
+     * è½¬16è¿›åˆ¶
      * @param bytearray
      * @return
      */
     private static String byteArrayToHexString(byte[] bytearray) {
     	
     	   StringBuffer hexString = new StringBuffer();
-           // ×Ö½ÚÊı×é×ª»»Îª Ê®Áù½øÖÆ Êı
+           // å­—èŠ‚æ•°ç»„è½¬æ¢ä¸º åå…­è¿›åˆ¶ æ•°
            for (int i = 0; i < bytearray.length; i++) {
                String shaHex = Integer.toHexString(bytearray[i] & 0xFF);
                if (shaHex.length() < 2) {

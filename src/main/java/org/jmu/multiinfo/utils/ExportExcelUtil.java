@@ -31,41 +31,41 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
  * 
 * @Title: ExportExcelUtil.java 
 * @Package org.jmu.multiinfo.utils 
-* @Description: ²Ù×÷excelÍ¨ÓÃutil
+* @Description: æ“ä½œexcelé€šç”¨util
 * @author  <a href="mailto:www_1350@163.com">Absurd</a>
-* @date 2015Äê9ÔÂ23ÈÕ ÉÏÎç9:45:30 
+* @date 2015å¹´9æœˆ23æ—¥ ä¸Šåˆ9:45:30 
 * @version V1.0
  */
 public class ExportExcelUtil {
 
 	/**
-	 * ÉèÖÃ¹¤×÷±¡ÑùÊ½
+	 * è®¾ç½®å·¥ä½œè–„æ ·å¼
 	 *
 	 * @param workbook
 	 * @return
 	 */
 	public static CellStyle setWorkbookStyle(Workbook workbook) {
-		// Éú³ÉÒ»¸öËµÃ÷ÑùÊ½
+		// ç”Ÿæˆä¸€ä¸ªè¯´æ˜æ ·å¼
 
 		CellStyle cellStyle = workbook.createCellStyle();
-		// ÉèÖÃ¾ÓÖĞ
+		// è®¾ç½®å±…ä¸­
 		cellStyle.setAlignment(HSSFCellStyle.ALIGN_CENTER);
-		// ÉèÖÃÌî³äÇ°¾°É«ºÍ±³¾°É«
+		// è®¾ç½®å¡«å……å‰æ™¯è‰²å’ŒèƒŒæ™¯è‰²
 
 		// cellStyle.setFillForegroundColor(HSSFColor.GREY_25_PERCENT.index);
 		cellStyle.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index);
 		// cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		// ÉèÖÃÏßÌõ¿í¶È
+		// è®¾ç½®çº¿æ¡å®½åº¦
 		cellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
-		// Éú³ÉÒ»¸ö×ÖÌå
+		// ç”Ÿæˆä¸€ä¸ªå­—ä½“
 
 		Font font = workbook.createFont();
 		font.setColor(HSSFColor.BLACK.index);
 		font.setFontHeightInPoints((short) 8);
-		// ×ÖÌåÓ¦ÓÃµ½ÑùÊ½
+		// å­—ä½“åº”ç”¨åˆ°æ ·å¼
 
 		cellStyle.setFont(font);
 
@@ -89,15 +89,15 @@ public class ExportExcelUtil {
 	}
 
 	/**
-	 * µ¼³öexcelÖ÷·½·¨
+	 * å¯¼å‡ºexcelä¸»æ–¹æ³•
 	 *
 	 * @param workbook
 	 * @param titleList
-	 *            ±êÌâ
+	 *            æ ‡é¢˜
 	 * @param dataList
-	 *            Êı¾İ
+	 *            æ•°æ®
 	 * @param sheetNum
-	 *            Ã¿Ò³ĞĞÊı
+	 *            æ¯é¡µè¡Œæ•°
 	 * @return
 	 */
 	public static HSSFWorkbook covertDataListChunk2Excel(HSSFWorkbook workbook, List<String> titleList,
@@ -106,21 +106,21 @@ public class ExportExcelUtil {
 			sheetNum = dataList.size();
 		if (sheetNum == 0)
 			return null;
-		// ÉèÖÃ±í¸ñÑùÊ½
+		// è®¾ç½®è¡¨æ ¼æ ·å¼
 		CellStyle cellStyle = getDataStyle(workbook);
 		CellStyle titleStyle = createHeaderCellStyle(workbook);
-		int sheetCount = dataList.size() / sheetNum;// Ò³Êı
+		int sheetCount = dataList.size() / sheetNum;// é¡µæ•°
 		sheetCount = dataList.size() % sheetNum == 0 ? sheetCount : sheetCount + 1;
-		for (int i = 0; i < sheetCount; i++) {// ·ÖÒ³
-			String sheetName = "µÚ" + (i + 1) + "Ò³";
+		for (int i = 0; i < sheetCount; i++) {// åˆ†é¡µ
+			String sheetName = "ç¬¬" + (i + 1) + "é¡µ";
 			Sheet sheet = workbook.createSheet(sheetName);
-			// ÉèÖÃ¹¤×÷±¡ÑùÊ½
+			// è®¾ç½®å·¥ä½œè–„æ ·å¼
 
 			setSheetStyle(sheet);
 			int rowCount = 0;
 			Row titleRow = sheet.createRow(rowCount++);
 			Cell cell = null;
-			for (int j = 0; j < titleList.size(); j++) {// ÉèÖÃ±êÌâ
+			for (int j = 0; j < titleList.size(); j++) {// è®¾ç½®æ ‡é¢˜
 				cell = titleRow.createCell(j);
 				cell.setCellValue(titleList.get(j));
 				cell.setCellStyle(titleStyle);
@@ -139,58 +139,58 @@ public class ExportExcelUtil {
 	}
 
 	/**
-	 * ÉèÖÃ¹¤×÷±¡ÑùÊ½
+	 * è®¾ç½®å·¥ä½œè–„æ ·å¼
 	 *
 	 * @param sheet
 	 * @return
 	 */
 	private static Sheet setSheetStyle(Sheet sheet) {
-		// ÉèÖÃÄ¬ÈÏÁĞ¿í¶ÈÎª15¸ö×Ö½Ú
+		// è®¾ç½®é»˜è®¤åˆ—å®½åº¦ä¸º15ä¸ªå­—èŠ‚
 		sheet.setDefaultColumnWidth(20);
 		return sheet;
 	}
 
 	/**
-	 * ÉèÖÃExcel±í¸ñÊı¾İÑùÊ½
+	 * è®¾ç½®Excelè¡¨æ ¼æ•°æ®æ ·å¼
 	 *
 	 * @param workbook
 	 * @return
 	 */
 	private static CellStyle getDataStyle(Workbook workbook) {
-		// Éú³ÉÒ»¸öËµÃ÷ÑùÊ½
+		// ç”Ÿæˆä¸€ä¸ªè¯´æ˜æ ·å¼
 
 		CellStyle cellStyle = workbook.createCellStyle();
-		// ÉèÖÃ¾ÓÖĞ
+		// è®¾ç½®å±…ä¸­
 		cellStyle.setAlignment(HSSFCellStyle.ALIGN_LEFT);
-		// ÉèÖÃÌî³äÇ°¾°É«ºÍ±³¾°É«
+		// è®¾ç½®å¡«å……å‰æ™¯è‰²å’ŒèƒŒæ™¯è‰²
 
 		// cellStyle.setFillForegroundColor(HSSFColor.GREY_25_PERCENT.index);
 		cellStyle.setFillBackgroundColor(HSSFColor.GREY_25_PERCENT.index);
 		// cellStyle.setFillPattern(HSSFCellStyle.SOLID_FOREGROUND);
-		// ÉèÖÃÏßÌõ¿í¶È
+		// è®¾ç½®çº¿æ¡å®½åº¦
 		cellStyle.setBorderBottom(HSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderLeft(HSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderRight(HSSFCellStyle.BORDER_THIN);
 		cellStyle.setBorderTop(HSSFCellStyle.BORDER_THIN);
-		// Éú³ÉÒ»¸ö×ÖÌå
+		// ç”Ÿæˆä¸€ä¸ªå­—ä½“
 
 		Font font = workbook.createFont();
 		font.setColor(HSSFColor.BLACK.index);
 		font.setFontHeightInPoints((short) 8);
-		// ×ÖÌåÓ¦ÓÃµ½ÑùÊ½
+		// å­—ä½“åº”ç”¨åˆ°æ ·å¼
 
 		cellStyle.setFont(font);
 		return cellStyle;
 	}
 
 	/**
-	 * ´´½¨±íÍ·±êÌâµ¥Ôª¸ñµÄÑùÊ½
+	 * åˆ›å»ºè¡¨å¤´æ ‡é¢˜å•å…ƒæ ¼çš„æ ·å¼
 	 *
 	 * @param workbook
 	 * @return
 	 */
 	public static HSSFCellStyle createHeaderCellStyle(HSSFWorkbook workbook) {
-		// ÉèÖÃ±íÍ·±êÌâÑùÊ½
+		// è®¾ç½®è¡¨å¤´æ ‡é¢˜æ ·å¼
 		HSSFFont headerFont = workbook.createFont();
 		headerFont.setFontHeightInPoints((short) 14);
 		headerFont.setBoldweight(HSSFFont.BOLDWEIGHT_BOLD);
@@ -208,7 +208,7 @@ public class ExportExcelUtil {
 
 
 	/**
-	 * ´´½¨sheet
+	 * åˆ›å»ºsheet
 	 * 
 	 * @param workbook
 	 * @param titleStyle
@@ -220,17 +220,17 @@ public class ExportExcelUtil {
 	 */
 	public static HSSFWorkbook convertDataList2Sheet(HSSFWorkbook workbook, CellStyle titleStyle, CellStyle cellStyle,
 			List<String> titleList, List<List<String>> dataList, String sheetName) {
-		// ÉèÖÃ±í¸ñÑùÊ½
+		// è®¾ç½®è¡¨æ ¼æ ·å¼
 		// CellStyle cellStyle = getDataStyle(workbook);
 		// CellStyle titleStyle=createHeaderCellStyle(workbook);
 		Sheet sheet = workbook.createSheet(sheetName);
-		// ÉèÖÃ¹¤×÷±¡ÑùÊ½
+		// è®¾ç½®å·¥ä½œè–„æ ·å¼
 
 		setSheetStyle(sheet);
 		int rowCount = 0;
 		Row titleRow = sheet.createRow(rowCount++);
 		Cell cell = null;
-		for (int j = 0; j < titleList.size(); j++) {// ÉèÖÃ±êÌâ
+		for (int j = 0; j < titleList.size(); j++) {// è®¾ç½®æ ‡é¢˜
 			cell = titleRow.createCell(j);
 			cell.setCellValue(titleList.get(j));
 			cell.setCellStyle(titleStyle);
@@ -249,7 +249,7 @@ public class ExportExcelUtil {
 
 	
 	/**
-	 * ´´½¨excel
+	 * åˆ›å»ºexcel
 	 * 
 	 * @param workbook
 	 * @param outputFileName
@@ -266,7 +266,7 @@ public class ExportExcelUtil {
 
 
 	/***
-	 * ½«ÎÄ¼ş¶ÁÈ¡Îªexcel
+	 * å°†æ–‡ä»¶è¯»å–ä¸ºexcel
 	 * @param file
 	 * @return workbook
 	*/
@@ -280,7 +280,7 @@ public class ExportExcelUtil {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} catch (EncryptedDocumentException e) {//Èç¹ûÊÇ¼ÓÃÜµÄexcel
+		} catch (EncryptedDocumentException e) {//å¦‚æœæ˜¯åŠ å¯†çš„excel
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (InvalidFormatException e) {
