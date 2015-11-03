@@ -58,7 +58,6 @@ public class UploadAction {
 		}
 		if(fileLocal!=null){
 			
-			fileLocal
 		}
 		return map;
 		
