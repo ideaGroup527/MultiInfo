@@ -6,24 +6,24 @@ import java.util.List;
  * 
 * @Title: DingShiTu.java 
 * @Package org.jmu.multiinfo.module.dingshitu.domain 
-* @Description: ¶¡ÊÏÍ¼
+* @Description: ä¸æ°å›¾
 * @author  <a href="mailto:www_1350@163.com">Absurd</a>
-* @date 2015Äê9ÔÂ23ÈÕ ÉÏÎç11:25:59 
+* @date 2015å¹´9æœˆ23æ—¥ ä¸Šåˆ11:25:59 
 * @version V1.0
  */
 public class DingShiTu {
 	/**
-	 * ×İÏò
+	 * çºµå‘
 	 */
 public static final int DING_ZXDB=1;
 
 /**
- * ºáÏò
+ * æ¨ªå‘
  */
 public static final int DING_HXDB=2;
 
 /**
- * È«±í
+ * å…¨è¡¨
  */
 public static final int DING_QBDB=3;
 
@@ -31,56 +31,56 @@ public static final int DING_QBDB=3;
 	private int height = 550;
 
 	/**
-	 *  Í¼Æ¬±êÌâ
+	 *  å›¾ç‰‡æ ‡é¢˜
 	 */
-	private String chartTitle = "¶¡     ÊÏ     Í¼";
+	private String chartTitle = "ä¸     æ°     å›¾";
 
 	
 	/**
-	 * ¸÷¸öÏß¶ÎµÄÃû³Æ
+	 * å„ä¸ªçº¿æ®µçš„åç§°
 	 */
 	private List<String> dingTitle;
 
 	/**
-	 * XÖáµÄÃû³Æ
+	 * Xè½´çš„åç§°
 	 */
 	private String xTitle;
 
 	
 	/**
-	 * YÖáµÄÃû³Æ
+	 * Yè½´çš„åç§°
 	 */
 	private String yTitle;
 
 	
 	/***
-	 * X¡¢YÖá¶ÔÓ¦µÄÖµ
+	 * Xã€Yè½´å¯¹åº”çš„å€¼
 	 */
 	private double[][] value;
 
 	
 	/**
-	 * XÖá
+	 * Xè½´
 	 */
 	private List<String> xScale;
 	
 	/***
-	 * ×î´ó¼«ÏŞ
+	 * æœ€å¤§æé™
 	 */
 	private double allMax;
 	
 	/***
-	 * ×îĞ¡¼«ÏŞ
+	 * æœ€å°æé™
 	 */
 	private double allMin;
 	
 	/**
-	 *  ÎÄ×ÖÔÚ×óÓÒfalse×ótrueÓÒ
+	 *  æ–‡å­—åœ¨å·¦å³falseå·¦trueå³
 	 */
 	private boolean left_right;
 	
 	/**
-	 *  ÎÄ×ÖÔÚÉÏÏÂfalseÉÏtrueÏÂ
+	 *  æ–‡å­—åœ¨ä¸Šä¸‹falseä¸Štrueä¸‹
 	 */
 	private boolean up_down;
 	

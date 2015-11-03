@@ -8,9 +8,9 @@ import org.springframework.stereotype.Service;
  * 
 * @Title: DingShiTuService.java 
 * @Package org.jmu.multiinfo.module.dingshitu.service 
-* @Description: ´¦ÀíÊı¾İÕ¹Ê¾Îª¶¡ÊÏÍ¼
+* @Description: å¤„ç†æ•°æ®å±•ç¤ºä¸ºä¸æ°å›¾
 * @author  <a href="mailto:www_1350@163.com">Absurd</a>
-* @date 2015Äê9ÔÂ23ÈÕ ÉÏÎç11:26:28 
+* @date 2015å¹´9æœˆ23æ—¥ ä¸Šåˆ11:26:28 
 * @version V1.0
  */
 @Service
