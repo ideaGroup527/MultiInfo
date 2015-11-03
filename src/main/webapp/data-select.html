@@ -45,8 +45,14 @@
                 async: true,
                 dataType: "json",
                 success: function (data) {
-                    console.log(data);
-                    console.log(data);
+                    console.log(data.data);
+                    var str='';
+                    for(var i =0;i<data.data.length;i++){
+                    	var temp = data.data[i];
+                    	for(var j=0;j<temp.length;j++){
+                    	}
+                    }
+                    console.log(str)
                 },
                 error: function (msg) {
                     console.log(msg);
