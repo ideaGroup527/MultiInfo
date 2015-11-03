@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head lang="zh-cn">
-    <meta charset="UTF-8">
-    <title>数据选择 - 多元信息挂接系统</title>
-    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
-    <link rel="stylesheet" href="css/dataTable/dataTables.bootstrap.min.css"/>
-    <style>
-        .container {
-            margin-top: 100px;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>数据选择 - 多元信息挂接系统</title>
+<link rel="stylesheet" href="css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" href="css/datatable/dataTables.bootstrap.min.css" />
+<style>
+.container {
+	margin-top: 100px;
+}
+</style>
 </head>
 <body>
-<div class="container">
-    <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
-        <h1>多元信息挂接系统 - 数据选择</h1>
+	<div class="container">
+		<div
+			class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
+			<h1>多元信息挂接系统 - 数据选择</h1>
 
-        <h3>MultiInfo - Data Select</h3>
-        <hr/>
-        <div>
-            <ul class="nav nav-tabs"></ul>
-            <div class="tab-content"></div>
-        </div>
-    </div>
-</div>
+			<h3>MultiInfo - Data Select</h3>
+			<hr />
+			<div>
+				<ul class="nav nav-tabs"></ul>
+				<div class="tab-content"></div>
+			</div>
+		</div>
+	</div>
 
 
-<script src="js/jquery-1.11.3.min.js"></script>
-<script src="js/bootstrap/bootstrap.min.js"></script>
-<script src="js/datatable/jquery.dataTables.min.js"></script>
-<script src="js/datatable/dataTables.bootstrap.min.js"></script>
-<script>
+	<script src="js/jquery-1.11.3.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+	<script src="js/datatable/jquery.dataTables.min.js"></script>
+	<script src="js/datatable/dataTables.bootstrap.min.js"></script>
+	<script>
     $(document).ready(function () {
 
         $(document).on("click", "li a", function (e) {
@@ -46,7 +47,7 @@
                 dataType: "json",
                 success: function (data) {
                     console.log(data.data);
-                    var tableId = "table_sheet_" + sheetNum;
+                    var tableId = "#table_sheet_" + sheetNum;
 
                     var innerHtml = "";
                     for (var i = 0; i < data.data.length; i++) {
@@ -54,25 +55,22 @@
                             innerHtml += "<tr>";
                             var temp = data.data[i];
                             for (var j = 0; j < temp.length; j++) {
-                                if (j == 0) {
-                                    innerHtml += "<th>" + temp[j] + "</th>";
-                                }
+                            	innerHtml += "<th>" + temp[j] + "</th>";
                             }
-                            innerHtml += "</tr>";
+                    		innerHtml += "</tr>";
                         } else {
                             innerHtml += "<tr>";
                             var temp = data.data[i];
                             for (var j = 0; j < temp.length; j++) {
-                                if (j == 0) {
                                     innerHtml += "<td>" + temp[j] + "</td>";
-                                }
                             }
-                            innerHtml += "</tr>";
+                    		innerHtml += "</tr>";
+                            
                         }
+                        
                     }
                     $(tableId).append(innerHtml);
-
-                    console.log(str)
+                    $(tableId).DataTable();
                 },
                 error: function (msg) {
                     console.log(msg);
@@ -82,8 +80,8 @@
 
         //AJAX - 请求获得数据文件的每个sheet名称
         $.ajax({
-//            url: "file/read/sheet",
-            url: "js/testJSON/sheet.js",
+            url: "file/read/sheet",
+           // url: "js/testJSON/sheet.js",
             type: "get",
             async: true,
             dataType: "json",
