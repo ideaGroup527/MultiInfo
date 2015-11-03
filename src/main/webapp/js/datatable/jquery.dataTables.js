@@ -54,7 +54,7 @@
 	 * [DataTables.net](href="http://datatables.net).
 	 *
 	 * Note that the `DataTable` object is not a global variable but is aliased
-	 * to `jQuery.fn.DataTable` and `jQuery.fn.dataTable` through which it may
+	 * to `jQuery.fn.DataTable` and `jQuery.fn.datatable` through which it may
 	 * be  accessed.
 	 *
 	 *  @class
@@ -65,14 +65,14 @@
 	 *  @example
 	 *    // Basic initialisation
 	 *    $(document).ready( function {
-	 *      $('#example').dataTable();
+	 *      $('#example').datatable();
 	 *    } );
 	 *
 	 *  @example
 	 *    // Initialisation with configuration options - in this case, disable
 	 *    // pagination and sorting.
 	 *    $(document).ready( function {
-	 *      $('#example').dataTable( {
+	 *      $('#example').datatable( {
 	 *        "paginate": false,
 	 *        "sort": false
 	 *      } );
@@ -5046,7 +5046,7 @@
 	
 	/**
 	 * Return the settings object for a particular table
-	 *  @param {node} table table we are using as a dataTable
+	 *  @param {node} table table we are using as a datatable
 	 *  @returns {object} Settings object - or null if not found
 	 *  @memberof DataTable#oApi
 	 */
@@ -5354,7 +5354,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Highlight every second row
 		 *      oTable.$('tr:odd').css('backgroundColor', 'blue');
@@ -5362,7 +5362,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Filter to rows with 'Webkit' in them, add a background colour and then
 		 *      // remove the filter, thus highlighting the 'Webkit' rows only.
@@ -5404,7 +5404,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Get the data from the first row in the table
 		 *      var data = oTable._('tr:first');
@@ -5415,7 +5415,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Filter to 'Webkit' and get all data for
 		 *      oTable.fnFilter('Webkit');
@@ -5474,11 +5474,11 @@
 		 *    var giCount = 2;
 		 *
 		 *    $(document).ready(function() {
-		 *      $('#example').dataTable();
+		 *      $('#example').datatable();
 		 *    } );
 		 *
 		 *    function fnClickAddRow() {
-		 *      $('#example').dataTable().fnAddData( [
+		 *      $('#example').datatable().fnAddData( [
 		 *        giCount+".1",
 		 *        giCount+".2",
 		 *        giCount+".3",
@@ -5516,7 +5516,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable( {
+		 *      var oTable = $('#example').datatable( {
 		 *        "sScrollY": "200px",
 		 *        "bPaginate": false
 		 *      } );
@@ -5550,7 +5550,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Immediately 'nuke' the current rows (perhaps waiting for an Ajax callback...)
 		 *      oTable.fnClearTable();
@@ -5587,7 +5587,7 @@
 		 *        }
 		 *      } );
 		 *
-		 *      oTable = $('#example').dataTable();
+		 *      oTable = $('#example').datatable();
 		 *    } );
 		 */
 		this.fnClose = function( nTr )
@@ -5608,7 +5608,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Immediately remove the first row
 		 *      oTable.fnDeleteRow( 0 );
@@ -5645,7 +5645,7 @@
 		 *  @example
 		 *    $(document).ready(function() {
 		 *      // This example is fairly pointless in reality, but shows how fnDestroy can be used
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *      oTable.fnDestroy();
 		 *    } );
 		 */
@@ -5663,7 +5663,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Re-draw the table - you wouldn't want to do it here, but it's an example :-)
 		 *      oTable.fnDraw();
@@ -5690,7 +5690,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Sometime later - filter...
 		 *      oTable.fnFilter( 'test string' );
@@ -5729,7 +5729,7 @@
 		 *  @example
 		 *    // Row data
 		 *    $(document).ready(function() {
-		 *      oTable = $('#example').dataTable();
+		 *      oTable = $('#example').datatable();
 		 *
 		 *      oTable.$('tr').click( function () {
 		 *        var data = oTable.fnGetData( this );
@@ -5740,7 +5740,7 @@
 		 *  @example
 		 *    // Individual cell data
 		 *    $(document).ready(function() {
-		 *      oTable = $('#example').dataTable();
+		 *      oTable = $('#example').datatable();
 		 *
 		 *      oTable.$('td').click( function () {
 		 *        var sData = oTable.fnGetData( this );
@@ -5776,7 +5776,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Get the nodes from the table
 		 *      var nNodes = oTable.fnGetNodes( );
@@ -5817,7 +5817,7 @@
 		 *      } );
 		 *
 		 *      // Init DataTables
-		 *      oTable = $('#example').dataTable();
+		 *      oTable = $('#example').datatable();
 		 *    } );
 		 */
 		this.fnGetPosition = function( node )
@@ -5861,7 +5861,7 @@
 		 *        }
 		 *      } );
 		 *
-		 *      oTable = $('#example').dataTable();
+		 *      oTable = $('#example').datatable();
 		 *    } );
 		 */
 		this.fnIsOpen = function( nTr )
@@ -5897,7 +5897,7 @@
 		 *        }
 		 *      } );
 		 *
-		 *      oTable = $('#example').dataTable();
+		 *      oTable = $('#example').datatable();
 		 *    } );
 		 */
 		this.fnOpen = function( nTr, mHtml, sClass )
@@ -5922,7 +5922,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *      oTable.fnPageChange( 'next' );
 		 *    } );
 		 */
@@ -5946,7 +5946,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Hide the second column after initialisation
 		 *      oTable.fnSetColumnVis( 1, false );
@@ -5971,7 +5971,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *      var oSettings = oTable.fnSettings();
 		 *
 		 *      // Show an example parameter from the settings
@@ -5993,7 +5993,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Sort immediately with columns 0 and 1
 		 *      oTable.fnSort( [ [0,'asc'], [1,'asc'] ] );
@@ -6015,7 +6015,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *
 		 *      // Sort on column 1, when 'sorter' is clicked on
 		 *      oTable.fnSortListener( document.getElementById('sorter'), 1 );
@@ -6044,7 +6044,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *      oTable.fnUpdate( 'Example update', 0, 0 ); // Single cell
 		 *      oTable.fnUpdate( ['a', 'b', 'c', 'd', 'e'], $('tbody tr')[0] ); // Row
 		 *    } );
@@ -6084,7 +6084,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready(function() {
-		 *      var oTable = $('#example').dataTable();
+		 *      var oTable = $('#example').datatable();
 		 *      alert( oTable.fnVersionCheck( '1.9.0' ) );
 		 *    } );
 		 */
@@ -6744,11 +6744,11 @@
 	 *
 	 * @example
 	 *   // Initialisation using a DataTables jQuery object
-	 *   var api = $('#example').dataTable().api();
+	 *   var api = $('#example').datatable().api();
 	 *
 	 * @example
 	 *   // Initialisation as a constructor
-	 *   var api = new $.fn.DataTable.Api( 'table.dataTable' );
+	 *   var api = new $.fn.DataTable.Api( 'table.datatable' );
 	 */
 	_Api = function ( context, data )
 	{
@@ -8896,7 +8896,7 @@
 	 *  @dtopt API-Static
 	 *
 	 *  @example
-	 *    alert( $.fn.dataTable.versionCheck( '1.9.0' ) );
+	 *    alert( $.fn.datatable.versionCheck( '1.9.0' ) );
 	 */
 	DataTable.versionCheck = DataTable.fnVersionCheck = function( version )
 	{
@@ -8933,7 +8933,7 @@
 	 *
 	 *  @example
 	 *    if ( ! $.fn.DataTable.isDataTable( '#example' ) ) {
-	 *      $('#example').dataTable();
+	 *      $('#example').datatable();
 	 *    }
 	 */
 	DataTable.isDataTable = DataTable.fnIsDataTable = function ( table )
@@ -8966,7 +8966,7 @@
 	 *  @dtopt API-Static
 	 *
 	 *  @example
-	 *    $.each( $.fn.dataTable.tables(true), function () {
+	 *    $.each( $.fn.datatable.tables(true), function () {
 	 *      $(table).DataTable().columns.adjust();
 	 *    } );
 	 */
@@ -9260,7 +9260,7 @@
 	 *
 	 * Note that the `DataTable.settings` object is aliased to
 	 * `jQuery.fn.dataTableExt` through which it may be accessed and
-	 * manipulated, or `jQuery.fn.dataTable.settings`.
+	 * manipulated, or `jQuery.fn.datatable.settings`.
 	 *  @member
 	 *  @type array
 	 *  @default []
@@ -9698,7 +9698,7 @@
 		 *  @example
 		 *    // Using a 2D array data source
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "data": [
 		 *          ['Trident', 'Internet Explorer 4.0', 'Win 95+', 4, 'X'],
 		 *          ['Trident', 'Internet Explorer 5.0', 'Win 95+', 5, 'C'],
@@ -9716,7 +9716,7 @@
 		 *  @example
 		 *    // Using an array of objects as a data source (`data`)
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "data": [
 		 *          {
 		 *            "engine":   "Trident",
@@ -9761,14 +9761,14 @@
 		 *  @example
 		 *    // Sort by 3rd column first, and then 4th column
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "order": [[2,'asc'], [3,'desc']]
 		 *      } );
 		 *    } );
 		 *
 		 *    // No initial sorting
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "order": []
 		 *      } );
 		 *    } );
@@ -9791,7 +9791,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "orderFixed": [[0,'asc']]
 		 *      } );
 		 *    } )
@@ -9880,14 +9880,14 @@
 		 * @example
 		 *   // Get JSON data from a file via Ajax.
 		 *   // Note DataTables expects data in the form `{ data: [ ...data... ] }` by default).
-		 *   $('#example').dataTable( {
+		 *   $('#example').datatable( {
 		 *     "ajax": "data.json"
 		 *   } );
 		 *
 		 * @example
 		 *   // Get JSON data from a file via Ajax, using `dataSrc` to change
 		 *   // `data` to `tableData` (i.e. `{ tableData: [ ...data... ] }`)
-		 *   $('#example').dataTable( {
+		 *   $('#example').datatable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": "tableData"
@@ -9897,7 +9897,7 @@
 		 * @example
 		 *   // Get JSON data from a file via Ajax, using `dataSrc` to read data
 		 *   // from a plain array rather than an array in an object
-		 *   $('#example').dataTable( {
+		 *   $('#example').datatable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": ""
@@ -9908,7 +9908,7 @@
 		 *   // Manipulate the data returned from the server - add a link to data
 		 *   // (note this can, should, be done using `render` for the column - this
 		 *   // is just a simple example of how the data can be manipulated).
-		 *   $('#example').dataTable( {
+		 *   $('#example').datatable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "dataSrc": function ( json ) {
@@ -9922,7 +9922,7 @@
 		 *
 		 * @example
 		 *   // Add data to the request
-		 *   $('#example').dataTable( {
+		 *   $('#example').datatable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "data": function ( d ) {
@@ -9935,7 +9935,7 @@
 		 *
 		 * @example
 		 *   // Send request as POST
-		 *   $('#example').dataTable( {
+		 *   $('#example').datatable( {
 		 *     "ajax": {
 		 *       "url": "data.json",
 		 *       "type": "POST"
@@ -9945,7 +9945,7 @@
 		 * @example
 		 *   // Get the data from localStorage (could interface with a form for
 		 *   // adding, editing and removing rows).
-		 *   $('#example').dataTable( {
+		 *   $('#example').datatable( {
 		 *     "ajax": function (data, callback, settings) {
 		 *       callback(
 		 *         JSON.parse( localStorage.getItem('dataTablesData') )
@@ -9974,7 +9974,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "All"]]
 		 *      } );
 		 *    } );
@@ -10032,7 +10032,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "searchCols": [
 		 *          null,
 		 *          { "search": "My filter" },
@@ -10058,7 +10058,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stripeClasses": [ 'strip1', 'strip2', 'strip3' ]
 		 *      } );
 		 *    } )
@@ -10078,7 +10078,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "autoWidth": false
 		 *      } );
 		 *    } );
@@ -10100,7 +10100,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "ajax": "sources/arrays.txt",
 		 *        "deferRender": true
 		 *      } );
@@ -10122,13 +10122,13 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "srollY": "200px",
 		 *        "paginate": false
 		 *      } );
 		 *
 		 *      // Some time later....
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "filter": false,
 		 *        "destroy": true
 		 *      } );
@@ -10153,7 +10153,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "searching": false
 		 *      } );
 		 *    } );
@@ -10173,7 +10173,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "info": false
 		 *      } );
 		 *    } );
@@ -10193,7 +10193,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "jQueryUI": true
 		 *      } );
 		 *    } );
@@ -10212,7 +10212,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "lengthChange": false
 		 *      } );
 		 *    } );
@@ -10230,7 +10230,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "paging": false
 		 *      } );
 		 *    } );
@@ -10251,7 +10251,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "processing": true
 		 *      } );
 		 *    } );
@@ -10281,7 +10281,7 @@
 		 *
 		 *    function initTable ()
 		 *    {
-		 *      return $('#example').dataTable( {
+		 *      return $('#example').datatable( {
 		 *        "scrollY": "200px",
 		 *        "paginate": false,
 		 *        "retrieve": true
@@ -10312,7 +10312,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "scrollY": "200",
 		 *        "scrollCollapse": true
 		 *      } );
@@ -10334,7 +10334,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "serverSide": true,
 		 *        "ajax": "xhr.php"
 		 *      } );
@@ -10354,7 +10354,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "ordering": false
 		 *      } );
 		 *    } );
@@ -10374,7 +10374,7 @@
 		 *  @example
 		 *    // Disable multiple column sorting ability
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "orderMulti": false
 		 *      } );
 		 *    } );
@@ -10394,7 +10394,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "orderCellsTop": true
 		 *      } );
 		 *    } );
@@ -10416,7 +10416,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "orderClasses": false
 		 *      } );
 		 *    } );
@@ -10441,7 +10441,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function () {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stateSave": true
 		 *      } );
 		 *    } );
@@ -10463,7 +10463,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "createdRow": function( row, data, dataIndex ) {
 		 *          // Bold the grade for all 'A' grade browsers
 		 *          if ( data[4] == "A" )
@@ -10488,7 +10488,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "drawCallback": function( settings ) {
 		 *          alert( 'DataTables has redrawn the table' );
 		 *        }
@@ -10516,7 +10516,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "footerCallback": function( tfoot, data, start, end, display ) {
 		 *          tfoot.getElementsByTagName('th')[0].innerHTML = "Starting index is "+start;
 		 *        }
@@ -10544,7 +10544,7 @@
 		 *    // Format a number using a single quote for the separator (note that
 		 *    // this can also be done with the language.thousands option)
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "formatNumber": function ( toFormat ) {
 		 *          return toFormat.toString().replace(
 		 *            /\B(?=(\d{3})+(?!\d))/g, "'"
@@ -10580,7 +10580,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "fheaderCallback": function( head, data, start, end, display ) {
 		 *          head.getElementsByTagName('th')[0].innerHTML = "Displaying "+(end-start)+" records";
 		 *        }
@@ -10611,7 +10611,7 @@
 		 *  @name DataTable.defaults.infoCallback
 		 *
 		 *  @example
-		 *    $('#example').dataTable( {
+		 *    $('#example').datatable( {
 		 *      "infoCallback": function( settings, start, end, max, total, pre ) {
 		 *        return start +" to "+ end;
 		 *      }
@@ -10635,7 +10635,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "initComplete": function(settings, json) {
 		 *          alert( 'DataTables has finished its initialisation.' );
 		 *        }
@@ -10659,7 +10659,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "preDrawCallback": function( settings ) {
 		 *          if ( $('#test').val() == 1 ) {
 		 *            return false;
@@ -10687,7 +10687,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "rowCallback": function( row, data, displayIndex, displayIndexFull ) {
 		 *          // Bold the grade for all 'A' grade browsers
 		 *          if ( data[4] == "A" ) {
@@ -10767,7 +10767,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stateSave": true,
 		 *        "stateLoadCallback": function (settings) {
 		 *          var o;
@@ -10815,7 +10815,7 @@
 		 *  @example
 		 *    // Remove a saved filter, so filtering is never loaded
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stateSave": true,
 		 *        "stateLoadParams": function (settings, data) {
 		 *          data.oSearch.sSearch = "";
@@ -10826,7 +10826,7 @@
 		 *  @example
 		 *    // Disallow state loading by returning false
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stateSave": true,
 		 *        "stateLoadParams": function (settings, data) {
 		 *          return false;
@@ -10850,7 +10850,7 @@
 		 *  @example
 		 *    // Show an alert with the filtering value that was saved
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stateSave": true,
 		 *        "stateLoaded": function (settings, data) {
 		 *          alert( 'Saved filter was: '+data.oSearch.sSearch );
@@ -10875,7 +10875,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stateSave": true,
 		 *        "stateSaveCallback": function (settings, data) {
 		 *          // Send an Ajax request to the server with the state object
@@ -10916,7 +10916,7 @@
 		 *  @example
 		 *    // Remove a saved filter, so filtering is never saved
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stateSave": true,
 		 *        "stateSaveParams": function (settings, data) {
 		 *          data.oSearch.sSearch = "";
@@ -10939,7 +10939,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "stateDuration": 60*60*24; // 1 day
 		 *      } );
 		 *    } )
@@ -10968,7 +10968,7 @@
 		 *  @example
 		 *    // 57 records available in the table, no filtering applied
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "serverSide": true,
 		 *        "ajax": "scripts/server_processing.php",
 		 *        "deferLoading": 57
@@ -10978,7 +10978,7 @@
 		 *  @example
 		 *    // 57 records after filtering, 100 without filtering (an initial filter applied)
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "serverSide": true,
 		 *        "ajax": "scripts/server_processing.php",
 		 *        "deferLoading": [ 57, 100 ],
@@ -11003,7 +11003,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "pageLength": 50
 		 *      } );
 		 *    } )
@@ -11024,7 +11024,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "displayStart": 20
 		 *      } );
 		 *    } )
@@ -11047,7 +11047,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "tabIndex": 1
 		 *      } );
 		 *    } );
@@ -11094,7 +11094,7 @@
 				 *
 				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
+				 *      $('#example').datatable( {
 				 *        "language": {
 				 *          "aria": {
 				 *            "sortAscending": " - click/return to sort ascending"
@@ -11117,7 +11117,7 @@
 				 *
 				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
+				 *      $('#example').datatable( {
 				 *        "language": {
 				 *          "aria": {
 				 *            "sortDescending": " - click/return to sort descending"
@@ -11147,7 +11147,7 @@
 				 *
 				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
+				 *      $('#example').datatable( {
 				 *        "language": {
 				 *          "paginate": {
 				 *            "first": "First page"
@@ -11170,7 +11170,7 @@
 				 *
 				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
+				 *      $('#example').datatable( {
 				 *        "language": {
 				 *          "paginate": {
 				 *            "last": "Last page"
@@ -11193,7 +11193,7 @@
 				 *
 				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
+				 *      $('#example').datatable( {
 				 *        "language": {
 				 *          "paginate": {
 				 *            "next": "Next page"
@@ -11216,7 +11216,7 @@
 				 *
 				 *  @example
 				 *    $(document).ready( function() {
-				 *      $('#example').dataTable( {
+				 *      $('#example').datatable( {
 				 *        "language": {
 				 *          "paginate": {
 				 *            "previous": "Previous page"
@@ -11241,7 +11241,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "emptyTable": "No data available in table"
 			 *        }
@@ -11273,7 +11273,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "info": "Showing page _PAGE_ of _PAGES_"
 			 *        }
@@ -11294,7 +11294,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "infoEmpty": "No entries to show"
 			 *        }
@@ -11316,7 +11316,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "infoFiltered": " - filtering from _MAX_ records"
 			 *        }
@@ -11339,7 +11339,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "infoPostFix": "All records shown are derived from real information."
 			 *        }
@@ -11369,7 +11369,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "decimal": ","
 			 *          "thousands": "."
@@ -11393,7 +11393,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "thousands": "'"
 			 *        }
@@ -11417,7 +11417,7 @@
 			 *  @example
 			 *    // Language change only
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "lengthMenu": "Display _MENU_ records"
 			 *        }
@@ -11427,7 +11427,7 @@
 			 *  @example
 			 *    // Language and options change
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "lengthMenu": 'Display <select>'+
 			 *            '<option value="10">10</option>'+
@@ -11458,7 +11458,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "loadingRecords": "Please wait - loading..."
 			 *        }
@@ -11479,7 +11479,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "processing": "DataTables is currently busy"
 			 *        }
@@ -11504,7 +11504,7 @@
 			 *  @example
 			 *    // Input text box will be appended at the end automatically
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "search": "Filter records:"
 			 *        }
@@ -11514,7 +11514,7 @@
 			 *  @example
 			 *    // Specify where the filter should appear
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "search": "Apply filter _INPUT_ to table"
 			 *        }
@@ -11550,7 +11550,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "url": "http://www.sprymedia.co.uk/dataTables/lang.txt"
 			 *        }
@@ -11572,7 +11572,7 @@
 			 *
 			 *  @example
 			 *    $(document).ready( function() {
-			 *      $('#example').dataTable( {
+			 *      $('#example').datatable( {
 			 *        "language": {
 			 *          "zeroRecords": "No records to display"
 			 *        }
@@ -11599,7 +11599,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "search": {"search": "Initial search"}
 		 *      } );
 		 *    } )
@@ -11693,7 +11693,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "dom": '&lt;"top"i&gt;rt&lt;"bottom"flp&gt;&lt;"clear"&gt;'
 		 *      } );
 		 *    } );
@@ -11713,7 +11713,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "searchDelay": 200
 		 *      } );
 		 *    } )
@@ -11740,7 +11740,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "pagingType": "full_numbers"
 		 *      } );
 		 *    } )
@@ -11764,7 +11764,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "scrollX": true,
 		 *        "scrollCollapse": true
 		 *      } );
@@ -11788,7 +11788,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "scrollX": "100%",
 		 *        "scrollXInner": "110%"
 		 *      } );
@@ -11812,7 +11812,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "scrollY": "200px",
 		 *        "paginate": false
 		 *      } );
@@ -11897,7 +11897,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "orderData": [ 0, 1 ], "targets": [ 0 ] },
 		 *          { "orderData": [ 1, 0 ], "targets": [ 1 ] },
@@ -11909,7 +11909,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "orderData": [ 0, 1 ] },
 		 *          { "orderData": [ 1, 0 ] },
@@ -11937,7 +11937,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "orderSequence": [ "asc" ], "targets": [ 1 ] },
 		 *          { "orderSequence": [ "desc", "asc", "asc" ], "targets": [ 2 ] },
@@ -11949,7 +11949,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          null,
 		 *          { "orderSequence": [ "asc" ] },
@@ -11974,7 +11974,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "searchable": false, "targets": [ 0 ] }
 		 *        ] } );
@@ -11983,7 +11983,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "searchable": false },
 		 *          null,
@@ -12007,7 +12007,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "orderable": false, "targets": [ 0 ] }
 		 *        ] } );
@@ -12016,7 +12016,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "orderable": false },
 		 *          null,
@@ -12040,7 +12040,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "visible": false, "targets": [ 0 ] }
 		 *        ] } );
@@ -12049,7 +12049,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "visible": false },
 		 *          null,
@@ -12079,7 +12079,7 @@
 		 *
 		 *  @example
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [3],
 		 *          "createdCell": function (td, cellData, rowData, row, col) {
@@ -12182,7 +12182,7 @@
 		 *    //      "grade": {value}
 		 *    //   }
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "ajaxSource": "sources/objects.txt",
 		 *        "columns": [
 		 *          { "data": "engine" },
@@ -12208,7 +12208,7 @@
 		 *    //      ]
 		 *    //   }
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "ajaxSource": "sources/deep.txt",
 		 *        "columns": [
 		 *          { "data": "engine" },
@@ -12224,7 +12224,7 @@
 		 *    // Using `data` as a function to provide different information for
 		 *    // sorting, filtering and display. In this case, currency (price)
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": function ( source, type, val ) {
@@ -12251,7 +12251,7 @@
 		 *  @example
 		 *    // Using default content
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": null,
@@ -12263,7 +12263,7 @@
 		 *  @example
 		 *    // Using array notation - outputting a list from an array
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": "name[, ]"
@@ -12334,7 +12334,7 @@
 		 *  @example
 		 *    // Create a comma separated list from an array of objects
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "ajaxSource": "sources/deep.txt",
 		 *        "columns": [
 		 *          { "data": "engine" },
@@ -12350,7 +12350,7 @@
 		 *  @example
 		 *    // Execute a function to obtain data
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": null, // Use the full data source object for the renderer's source
@@ -12367,7 +12367,7 @@
 		 *    // (which has both forms) is used for filtering for if a user inputs either format, while
 		 *    // the formatted phone number is the one that is shown in the table.
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": null, // Use the full data source object for the renderer's source
@@ -12383,7 +12383,7 @@
 		 *  @example
 		 *    // Use as a function to create a link from the data source
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "data": "download_link",
@@ -12410,7 +12410,7 @@
 		 *  @example
 		 *    // Make the first column use TH cells
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [ {
 		 *          "targets": [ 0 ],
 		 *          "cellType": "th"
@@ -12432,7 +12432,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "class": "my_class", "targets": [ 0 ] }
 		 *        ]
@@ -12442,7 +12442,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "class": "my_class" },
 		 *          null,
@@ -12474,7 +12474,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          null,
 		 *          null,
@@ -12502,7 +12502,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          {
 		 *            "data": null,
@@ -12516,7 +12516,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          null,
 		 *          null,
@@ -12548,7 +12548,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "name": "engine", "targets": [ 0 ] },
 		 *          { "name": "browser", "targets": [ 1 ] },
@@ -12562,7 +12562,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "name": "engine" },
 		 *          { "name": "browser" },
@@ -12590,7 +12590,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "orderDataType": "dom-text", "targets": [ 2, 3 ] },
 		 *          { "type": "numeric", "targets": [ 3 ] },
@@ -12603,7 +12603,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          null,
 		 *          null,
@@ -12630,7 +12630,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "title": "My column title", "targets": [ 0 ] }
 		 *        ]
@@ -12640,7 +12640,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "title": "My column title" },
 		 *          null,
@@ -12671,7 +12671,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "type": "html", "targets": [ 0 ] }
 		 *        ]
@@ -12681,7 +12681,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "type": "html" },
 		 *          null,
@@ -12709,7 +12709,7 @@
 		 *  @example
 		 *    // Using `columnDefs`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columnDefs": [
 		 *          { "width": "20%", "targets": [ 0 ] }
 		 *        ]
@@ -12719,7 +12719,7 @@
 		 *  @example
 		 *    // Using `columns`
 		 *    $(document).ready( function() {
-		 *      $('#example').dataTable( {
+		 *      $('#example').datatable( {
 		 *        "columns": [
 		 *          { "width": "20%" },
 		 *          null,
@@ -12743,7 +12743,7 @@
 	 * table options. DataTables does not have a single instance for each DataTable
 	 * with the settings attached to that instance, but rather instances of the
 	 * DataTable "class" are created on-the-fly as needed (typically by a
-	 * $().dataTable() call) and the settings object is then applied to that
+	 * $().datatable() call) and the settings object is then applied to that
 	 * instance.
 	 *
 	 * Note that this object is related to {@link DataTable.defaults} but this
@@ -12752,7 +12752,7 @@
 	 * through the initialisation options.
 	 *  @namespace
 	 *  @todo Really should attach the settings object to individual instances so we
-	 *    don't need to create new instances on each $().dataTable() call (if the
+	 *    don't need to create new instances on each $().datatable() call (if the
 	 *    table already exists). It would also save passing oSettings around and
 	 *    into every single function. However, this is a very significant
 	 *    architecture change for DataTables and will almost certainly break
@@ -13660,7 +13660,7 @@
 	 * options.
 	 *
 	 * Note that the `DataTable.ext` object is available through
-	 * `jQuery.fn.dataTable.ext` where it may be accessed and manipulated. It is
+	 * `jQuery.fn.datatable.ext` where it may be accessed and manipulated. It is
 	 * also aliased to `jQuery.fn.dataTableExt` for historic reasons.
 	 *  @namespace
 	 *  @extends DataTable.models.ext
@@ -13743,7 +13743,7 @@
 		 *  @type array
 		 *
 		 *  @example
-		 *    $.fn.dataTable.ext.features.push( {
+		 *    $.fn.datatable.ext.features.push( {
 		 *      "fnInit": function( oSettings ) {
 		 *        return new TableTools( { "oDTSettings": oSettings } );
 		 *      },
@@ -13789,7 +13789,7 @@
 		 *    // The following example shows custom search being applied to the
 		 *    // fourth column (i.e. the data[3] index) based on two input values
 		 *    // from the end-user, matching the data in a certain range.
-		 *    $.fn.dataTable.ext.search.push(
+		 *    $.fn.datatable.ext.search.push(
 		 *      function( settings, data, dataIndex ) {
 		 *        var min = document.getElementById('min').value * 1;
 		 *        var max = document.getElementById('max').value * 1;
@@ -13963,7 +13963,7 @@
 		 *
 		 *  @example
 		 *    // Ordering using `input` node values
-		 *    $.fn.dataTable.ext.order['dom-text'] = function  ( settings, col )
+		 *    $.fn.datatable.ext.order['dom-text'] = function  ( settings, col )
 		 *    {
 		 *      return this.api().column( col, {order:'index'} ).nodes().map( function ( td, i ) {
 		 *        return $('input', td).val();
@@ -14009,7 +14009,7 @@
 			 *
 			 *  @example
 			 *    // Currency type detection plug-in:
-			 *    $.fn.dataTable.ext.type.detect.push(
+			 *    $.fn.datatable.ext.type.detect.push(
 			 *      function ( data, settings ) {
 			 *        // Check the numeric part
 			 *        if ( ! $.isNumeric( data.substring(1) ) ) {
@@ -14059,7 +14059,7 @@
 			 *  @default {}
 			 *
 			 *  @example
-			 *    $.fn.dataTable.ext.type.search['title-numeric'] = function ( d ) {
+			 *    $.fn.datatable.ext.type.search['title-numeric'] = function ( d ) {
 			 *      return d.replace(/\n/g," ").replace( /<.*?>/g, "" );
 			 *    }
 			 */
@@ -14112,7 +14112,7 @@
 			 *
 			 *  @example
 			 *    // Numeric ordering of formatted numbers with a pre-formatter
-			 *    $.extend( $.fn.dataTable.ext.type.order, {
+			 *    $.extend( $.fn.datatable.ext.type.order, {
 			 *      "string-pre": function(x) {
 			 *        a = (a === "-" || a === "") ? 0 : a.replace( /[^\d\-\.]/g, "" );
 			 *        return parseFloat( a );
@@ -14121,7 +14121,7 @@
 			 *
 			 *  @example
 			 *    // Case-sensitive string ordering, with no pre-formatting method
-			 *    $.extend( $.fn.dataTable.ext.order, {
+			 *    $.extend( $.fn.datatable.ext.order, {
 			 *      "string-case-asc": function(x,y) {
 			 *        return ((x < y) ? -1 : ((x > y) ? 1 : 0));
 			 *      },
@@ -14782,7 +14782,7 @@
 	 *   // Column definition using the number renderer
 	 *   {
 	 *     data: "salary",
-	 *     render: $.fn.dataTable.render.number( '\'', '.', 0, '$' )
+	 *     render: $.fn.datatable.render.number( '\'', '.', 0, '$' )
 	 *   }
 	 *
 	 * @namespace
@@ -14953,7 +14953,7 @@
 		return $(this).dataTable( opts ).api();
 	};
 
-	// All properties that are available to $.fn.dataTable should also be
+	// All properties that are available to $.fn.datatable should also be
 	// available on $.fn.DataTable
 	$.each( DataTable, function ( prop, val ) {
 		$.fn.DataTable[ prop ] = val;
@@ -15070,13 +15070,13 @@
 	 *
 	 *  @example
 	 *     // Use a custom property returned from the server in another DOM element
-	 *     $('#table').dataTable().on('xhr.dt', function (e, settings, json) {
+	 *     $('#table').datatable().on('xhr.dt', function (e, settings, json) {
 	 *       $('#status').html( json.status );
 	 *     } );
 	 *
 	 *  @example
 	 *     // Pre-process the data returned from the server
-	 *     $('#table').dataTable().on('xhr.dt', function (e, settings, json) {
+	 *     $('#table').datatable().on('xhr.dt', function (e, settings, json) {
 	 *       for ( var i=0, ien=json.aaData.length ; i<ien ; i++ ) {
 	 *         json.aaData[i].sum = json.aaData[i].one + json.aaData[i].two;
 	 *       }
