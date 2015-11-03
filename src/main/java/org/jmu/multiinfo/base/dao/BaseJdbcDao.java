@@ -101,7 +101,7 @@ public class BaseJdbcDao {
     }
 
     /**
-     * ²éÑ¯µ¥¸ö¶ÔÏóµÄÖµ£¬ÓÉÓÚÖ±½Óµ÷ÓÃspringµÄqueryForObject£¬Èç¹û¼ÇÂ¼²»´æÔÚµÄ»°£¬»áÅ×³öÒì³££¬ÎªÁË±ÜÃâÒì³£³öÏÖ£¬Òò´ËÔÚ»ùÀà¼ÓÁË¸Ã·½·¨
+     * æŸ¥è¯¢å•ä¸ªå¯¹è±¡çš„å€¼ï¼Œç”±äºç›´æ¥è°ƒç”¨springçš„queryForObjectï¼Œå¦‚æœè®°å½•ä¸å­˜åœ¨çš„è¯ï¼Œä¼šæŠ›å‡ºå¼‚å¸¸ï¼Œä¸ºäº†é¿å…å¼‚å¸¸å‡ºç°ï¼Œå› æ­¤åœ¨åŸºç±»åŠ äº†è¯¥æ–¹æ³•
      *
      * @param <T>
      * @param sql
@@ -120,7 +120,7 @@ public class BaseJdbcDao {
     }
 
     /**
-     * ÅĞ¶ÏÁĞÃûÊÇ·ñ´æÔÚ
+     * åˆ¤æ–­åˆ—åæ˜¯å¦å­˜åœ¨
      *
      * @param rs
      * @param columnName
@@ -145,7 +145,7 @@ public class BaseJdbcDao {
     }
 
     /**
-     * µÃµ½Êı¾İ¿âÁ¬½Ó
+     * å¾—åˆ°æ•°æ®åº“è¿æ¥
      *
      * @return Connection
      * @throws SQLException
@@ -155,23 +155,23 @@ public class BaseJdbcDao {
     }
 
     /**
-     * ¹Ø±ÕÊı¾İ¿âÁ¬½Ó×ÊÔ´
+     * å…³é—­æ•°æ®åº“è¿æ¥èµ„æº
      *
-     * @param conn Êı¾İ¿âÁ¬½Ó
-     * @param st   Ö´ĞĞµÄstatement
-     * @param rs   ÓÎ±ê½á¹û¼¯
+     * @param conn æ•°æ®åº“è¿æ¥
+     * @param st   æ‰§è¡Œçš„statement
+     * @param rs   æ¸¸æ ‡ç»“æœé›†
      */
     protected void closeConn(Connection conn, Statement st, ResultSet rs) {
         cleanUp(conn, null, st, rs);
     }
 
     /**
-     * ¹Ø±ÕÊı¾İ¿âÁ¬½Ó×ÊÔ´
+     * å…³é—­æ•°æ®åº“è¿æ¥èµ„æº
      *
-     * @param conn Êı¾İ¿âÁ¬½Ó
-     * @param cs   Ö´ĞĞµÄ´æ´¢¹ı³Ìstatement
-     * @param ps   Ö´ĞĞµÄstatement
-     * @param rs   ÓÎ±ê½á¹û¼¯
+     * @param conn æ•°æ®åº“è¿æ¥
+     * @param cs   æ‰§è¡Œçš„å­˜å‚¨è¿‡ç¨‹statement
+     * @param ps   æ‰§è¡Œçš„statement
+     * @param rs   æ¸¸æ ‡ç»“æœé›†
      */
     protected void cleanUp(Connection conn, CallableStatement cs, Statement ps, ResultSet rs) {
         try {
