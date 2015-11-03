@@ -1,4 +1,4 @@
-package org.jmu.multiinfo.module.dingshitu.service;
+package org.jmu.multiinfo.module.dingchart.service;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;

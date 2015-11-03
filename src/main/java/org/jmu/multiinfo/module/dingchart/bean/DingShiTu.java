@@ -1,4 +1,4 @@
-package org.jmu.multiinfo.module.dingshitu.domain;
+package org.jmu.multiinfo.module.dingchart.bean;
 
 import java.util.List;
 

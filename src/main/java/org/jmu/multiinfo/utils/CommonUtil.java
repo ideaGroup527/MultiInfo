@@ -24,7 +24,7 @@ public class CommonUtil {
 		}
 		return tag;
 	}
-
+	
 	/**
 	 * 验证是否为手机号
 	 * 
