@@ -185,6 +185,7 @@
         if (colListIndex.length != 0) {
             $.ajax({
                 url: "select/range",
+                type: "post",
                 data: {"col": colListIndex},
                 success: function (data) {
                     console.log(data);
@@ -193,6 +194,7 @@
         } else {
             $.ajax({
                 url: "select/range",
+                type: "post",
                 data: {"row": rowList},
                 success: function (data) {
                     console.log(data);
