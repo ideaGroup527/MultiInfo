@@ -3,8 +3,63 @@
 <head lang="zh-cn">
     <meta charset="UTF-8">
     <title>平均值计算 - 多元信息挂接系统</title>
+    <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css"/>
+    <style>
+        .container {
+            margin-top: 100px;
+        }
+    </style>
 </head>
 <body>
+<div class="container">
+    <div
+            class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
+        <h1>多元信息挂接系统 - 数据展示</h1>
 
+        <h3>MultiInfo - Data Presents</h3>
+        <hr/>
+        <div id="presents" style="height: 400px"></div>
+    </div>
+</div>
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/echarts/build/dist/echarts.js"></script>
+<script>
+    $(document).ready(function () {
+        require.config({
+            paths: {
+                echarts: 'js/echarts/build/dist/'
+            }
+        });
+
+        require(
+                [
+                    'echarts',
+                    'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts图表
+                    var myChart = ec.init(document.getElementById('presents'));
+
+                    $.ajax({
+                        url: "js/testJSON/average_option.js",
+                        type: "post",
+                        async: true,
+                        dataType: "json",
+                        success: function (data) {
+                            // 为echarts对象加载数据
+                            console.log(data);
+                            myChart.setOption(data);
+                        },
+                        error: function (msg) {
+                            console.log(msg);
+                            console.log(eval(msg.responseText));
+                        }
+                    })
+                }
+        );
+    });
+
+
+</script>
 </body>
 </html>
