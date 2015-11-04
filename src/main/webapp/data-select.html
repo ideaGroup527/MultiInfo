@@ -52,8 +52,8 @@ $(document).ready(function () {
         //AJAX - 请求点击的sheet名所对应的表单
         var sheetNum = $(this).parent().index();
         $.ajax({
-            url: "js/testJSON/data.js",
-//            url: "file/read/sheet/" + sheetNum,
+//            url: "js/testJSON/data.js",
+            url: "file/read/sheet/" + sheetNum,
             type: "post",
             async: true,
             dataType: "json",
@@ -101,8 +101,8 @@ $(document).ready(function () {
 
     //AJAX - 请求获得数据文件的每个sheet名称
     $.ajax({
-//        url: "file/read/sheet",
-        url: "js/testJSON/sheet.js",
+        url: "file/read/sheet",
+//        url: "js/testJSON/sheet.js",
         type: "post",
         async: true,
         dataType: "json",
