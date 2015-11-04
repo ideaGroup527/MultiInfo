@@ -49,6 +49,8 @@ $(document).ready(function () {
         e.preventDefault();
         $(this).tab('show');
 
+        dataColNum = 0;
+        dataRowNum = 0;
         //AJAX - 请求点击的sheet名所对应的表单
         var sheetNum = $(this).parent().index();
         $.ajax({
