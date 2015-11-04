@@ -40,27 +40,94 @@
 <script src="js/datatable/jquery.dataTables.min.js"></script>
 <script src="js/datatable/dataTables.bootstrap.min.js"></script>
 <script>
-    var dataColNum = 0;
-    var dataRowNum = 0;
+var dataColNum = 0;
+var dataRowNum = 0;
 
-    $(document).ready(function () {
+$(document).ready(function () {
 
-        $(document).on("click", "li a", function (e) {
-            e.preventDefault();
-            $(this).tab('show');
+    $(document).on("click", "li a", function (e) {
+        e.preventDefault();
+        $(this).tab('show');
 
-            //AJAX - 请求点击的sheet名所对应的表单
-            var sheetNum = $(this).parent().index();
+        //AJAX - 请求点击的sheet名所对应的表单
+        var sheetNum = $(this).parent().index();
+        $.ajax({
+            url: "js/testJSON/data.js",
+//            url: "file/read/sheet/" + sheetNum,
+            type: "post",
+            async: true,
+            dataType: "json",
+            success: function (data) {
+                dataColNum = data.data.length;
+                dataRowNum = data.data[0].length;
+                var tableId = "#table_sheet_" + sheetNum;
+
+                var innerHtml = "";
+                for (var i = 0; i < data.data.length; i++) {
+                    if (i == 0) {
+                        innerHtml += "<tr>";
+                        var temp = data.data[i];
+                        for (var j = 0; j < temp.length; j++) {
+                            innerHtml += "<th>" + temp[j] +
+                            "<input type='checkbox' name='choose_col'/>"
+                            + "</th>";
+                        }
+                        innerHtml += "</tr>";
+                    } else {
+                        innerHtml += "<tr>";
+                        var temp = data.data[i];
+                        for (var j = 0; j < temp.length; j++) {
+                            if (j == 0) {
+                                innerHtml += "<td data-single-num='" + j + "'>" + temp[j] +
+                                "<input type='checkbox' name='choose_row'/>"
+                                + "</td>";
+                            } else {
+                                innerHtml += "<td>" + temp[j] + "</td>";
+                            }
+                        }
+                        innerHtml += "</tr>";
+
+                    }
+
+                }
+                $(tableId).empty();
+                $(tableId).append(innerHtml);
+            },
+            error: function (msg) {
+                console.error(msg);
+            }
+        });
+    });
+
+    //AJAX - 请求获得数据文件的每个sheet名称
+    $.ajax({
+//        url: "file/read/sheet",
+        url: "js/testJSON/sheet.js",
+        type: "post",
+        async: true,
+        dataType: "json",
+        success: function (data) {
+            console.log(data);
+            for (var i = 0; i < data.sheet.length; i++) {
+                $(".nav-tabs").append("<li role='presentation' data-sheet='sheet_" + i + "'><a href='#sheet_" + i + "'>" + data.sheet[i] + "</a></li>");
+                $(".tab-content").append("<div role ='tabpanel' class='tab-pane fade in active' id='sheet_" + i + "'><table id='table_sheet_" + i + "' class='table table-striped table-bordered' cellspacing='0' width='100%'></table></div>");
+            }
+            $(".nav-tabs > li:eq(0)").addClass("active");
+        },
+        error: function (msg) {
+            console.log(msg);
+        },
+        complete: function () {
+            //加载页面后加载第一个sheet的内容
             $.ajax({
-//                url: "js/testJSON/data.js",
-                url: "file/read/sheet/" + sheetNum,
+                url: "js/testJSON/data.js",
                 type: "post",
                 async: true,
                 dataType: "json",
                 success: function (data) {
                     dataColNum = data.data.length;
                     dataRowNum = data.data[0].length;
-                    var tableId = "#table_sheet_" + sheetNum;
+                    var tableId = "#table_sheet_" + 0;
 
                     var innerHtml = "";
                     for (var i = 0; i < data.data.length; i++) {
@@ -97,112 +164,103 @@
                     console.error(msg);
                 }
             });
-        });
 
-        //AJAX - 请求获得数据文件的每个sheet名称
+        }
+    });
+
+});
+
+var selectedCol = 0;
+$(document).on("click", "input[name='choose_col']", function () {
+    var chooseCol = $(this).parent().index();
+    //选中checkbox后，加上交互效果
+    if (this.checked) {
+        for (var i = 0; i < dataColNum; i++) {
+            var td = "td:eq(" + (chooseCol + i * dataRowNum) + ")";
+            $(td).addClass("info");
+            $("input[name='choose_row']").hide();
+            $("#draw_btn").removeAttr("disabled");
+        }
+        selectedCol += 1;
+    } else {
+        for (var i = 0; i < dataColNum; i++) {
+            var td = "td:eq(" + (chooseCol + i * dataRowNum) + ")";
+            $(td).removeClass("info");
+        }
+        selectedCol -= 1;
+        if (selectedCol == 0) {
+            $("input[name='choose_row']").show();
+            $("#draw_btn").attr("disabled", "disabled");
+        }
+    }
+});
+
+var selectedRow = 0;
+$(document).on("click", "input[name='choose_row']", function () {
+    var chooseRow = $(this).parent().parent().index();
+    var tr = "tr:eq(" + chooseRow + ")";
+    $(tr).toggleClass("info");
+    if (this.checked) {
+        selectedRow += 1;
+        $("input[name='choose_col']").hide();
+        $("#draw_btn").removeAttr("disabled");
+    } else {
+        selectedRow -= 1;
+        if (selectedRow == 0) {
+            $("input[name='choose_col']").show();
+            $("#draw_btn").attr("disabled", "disabled");
+        }
+    }
+});
+
+//
+$("#draw_btn").click(function () {
+    var colList = $("input[name='choose_col']");
+    var colListIndex = new Array();
+    for (var i = 0; i < colList.length; i++) {
+        if (colList[i].checked) {
+            colListIndex.push(i);
+        }
+    }
+
+    var rowList = $("input[name='choose_row']");
+    var rowListIndex = new Array();
+    for (var i = 0; i < rowListIndex.length; i++) {
+        if (rowList[i].checked) {
+            rowListIndex.push(i);
+        }
+    }
+
+    //取到当前sheet的值
+    var sheetNum = $(".nav-tabs li.active").data("sheet").split("_")[1];
+
+    if (colListIndex.length != 0) {
         $.ajax({
-            url: "file/read/sheet",
-//            url: "js/testJSON/sheet.js",
+            url: "select/range",
             type: "post",
-            async: true,
-            dataType: "json",
+            data: {"col[]": colListIndex, "sheet": sheetNum},
             success: function (data) {
-                console.log(data);
-                for (var i = 0; i < data.sheet.length; i++) {
-                    $(".nav-tabs").append("<li role='presentation' data-sheet='sheet_" + i + "'><a href='#sheet_" + i + "'>" + data.sheet[i] + "</a></li>");
-                    $(".tab-content").append("<div role ='tabpanel' class='tab-pane fade in' id='sheet_" + i + "'><table id='table_sheet_" + i + "' class='table table-striped table-bordered' cellspacing='0' width='100%'></table></div>");
-                }
-                $(".nav-tabs > li:eq(0)").addClass("active");
+                console.log("Uploading COL range SUCCESS.");
             },
             error: function (msg) {
-                console.log(msg);
+                console.log("Uploading COL range FAILED.");
+            }
+        });
+    } else {
+        $.ajax({
+            url: "select/range",
+            type: "post",
+            data: {"row[]": rowList, "sheet": sheetNum},
+            success: function (data) {
+                console.log("Uploading ROW range SUCCESS.");
+            },
+            error: function (msg) {
+                console.log("Uploading ROW range FAILED.");
             }
         });
 
-    });
-
-    var selectedCol = 0;
-    $(document).on("click", "input[name='choose_col']", function () {
-        var chooseCol = $(this).parent().index();
-        //选中checkbox后，加上交互效果
-        if (this.checked) {
-            for (var i = 0; i < dataColNum; i++) {
-                var td = "td:eq(" + (chooseCol + i * dataRowNum) + ")";
-                $(td).addClass("info");
-                $("input[name='choose_row']").hide();
-                $("#draw_btn").removeAttr("disabled");
-            }
-            selectedCol += 1;
-        } else {
-            for (var i = 0; i < dataColNum; i++) {
-                var td = "td:eq(" + (chooseCol + i * dataRowNum) + ")";
-                $(td).removeClass("info");
-            }
-            selectedCol -= 1;
-            if (selectedCol == 0) {
-                $("input[name='choose_row']").show();
-                $("#draw_btn").attr("disabled", "disabled");
-            }
-        }
-    });
-
-    var selectedRow = 0;
-    $(document).on("click", "input[name='choose_row']", function () {
-        var chooseRow = $(this).parent().parent().index();
-        var tr = "tr:eq(" + chooseRow + ")";
-        $(tr).toggleClass("info");
-        if (this.checked) {
-            selectedRow += 1;
-            $("input[name='choose_col']").hide();
-            $("#draw_btn").removeAttr("disabled");
-        } else {
-            selectedRow -= 1;
-            if (selectedRow == 0) {
-                $("input[name='choose_col']").show();
-                $("#draw_btn").attr("disabled", "disabled");
-            }
-        }
-    });
-
-    //
-    $("#draw_btn").click(function () {
-        var colList = $("input[name='choose_col']");
-        var colListIndex = new Array();
-        for (var i = 0; i < colList.length; i++) {
-            if (colList[i].checked) {
-                colListIndex.push(i);
-            }
-        }
-
-        var rowList = $("input[name='choose_row']");
-        var rowListIndex = new Array();
-        for (var i = 0; i < rowListIndex.length; i++) {
-            if (rowList[i].checked) {
-                rowListIndex.push(i);
-            }
-        }
-
-        if (colListIndex.length != 0) {
-            $.ajax({
-                url: "select/range",
-                type: "post",
-                data: {"col": colListIndex},
-                success: function (data) {
-                    console.log(data);
-                }
-            });
-        } else {
-            $.ajax({
-                url: "select/range",
-                type: "post",
-                data: {"row": rowList},
-                success: function (data) {
-                    console.log(data);
-                }
-            });
-
-        }
-    });
+    }
+});
 </script>
 </body>
 </html>
