@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.github.abel533.echarts.axis.CategoryAxis;
 import com.github.abel533.echarts.axis.ValueAxis;
@@ -51,7 +52,7 @@ public class SelectDataAction {
 	 */
 	@RequestMapping(value = "/range")
 	@ResponseBody
-	public String selectData(HttpServletRequest request,HttpSession session,
+	public Map<String, Object> selectData(HttpServletRequest request,HttpSession session,
 			@RequestParam(value="row[]", required=false) Integer[] rows,@RequestParam(value="col[]", required=false) Integer[] cols,
 			@RequestParam(value="sheet",required=false,defaultValue="0") int sheet) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
@@ -63,13 +64,13 @@ public class SelectDataAction {
 		logger.debug(sb.toString()+"sheet:"+sheet);
 		String path = (String) session.getAttribute("path");
 		map.put("data", ExcelInfo.getData(path, sheet,rows,cols));
-		return "redirect:average.html";
+		return map;
 		
 	}
 	
 	@RequestMapping(value="/test")
 	@ResponseBody
-	public Map<String, Object> test(HttpServletRequest request,HttpSession session) {
+	public ModelAndView test(HttpServletRequest request,HttpSession session) {
 		logger.debug("sheet:");
 		Map<String, Object> map = new HashMap<String, Object>();
 		GsonOption option = new GsonOption();
@@ -95,7 +96,8 @@ public class SelectDataAction {
 	    line.smooth(true).name("高度(km)与气温(°C)变化关系").data(15, -50, -56.5, -46.5, -22.1, -2.5, -27.7, -55.7, -76.5).itemStyle().normal().lineStyle().shadowColor("rgba(0,0,0,0.4)");
 	    option.series(line);
         map.put("option",option);
-        return map;
+        ModelAndView mav=new ModelAndView("select/test2",map);
+        return mav;
     } 
 	
 }
