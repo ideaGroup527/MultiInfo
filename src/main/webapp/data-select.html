@@ -244,6 +244,7 @@ $("#draw_btn").click(function () {
             data: {"col[]": colListIndex, "sheet": sheetNum},
             success: function (data) {
                 console.log("Uploading COL range SUCCESS.");
+                window.location = "average.html";
             },
             error: function (msg) {
                 console.log("Uploading COL range FAILED.");
@@ -255,13 +256,13 @@ $("#draw_btn").click(function () {
             type: "post",
             data: {"row[]": rowList, "sheet": sheetNum},
             success: function (data) {
+                window.location = "average.html";
                 console.log("Uploading ROW range SUCCESS.");
             },
             error: function (msg) {
                 console.log("Uploading ROW range FAILED.");
             }
         });
-
     }
 });
 </script>
