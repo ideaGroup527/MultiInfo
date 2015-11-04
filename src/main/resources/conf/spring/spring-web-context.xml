@@ -12,8 +12,8 @@
 
 	<context:component-scan base-package="org.jmu.multiinfo.module" />
 	<context:component-scan base-package="org.jmu.multiinfo.common.controller" />
-<mvc:annotation-driven />
-	<!-- 静态文件 css+-->
+	<mvc:annotation-driven />
+	<!-- 静态文件 css+ -->
 	<mvc:default-servlet-handler />
 	<bean id="contentNegotiationManager"
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
@@ -32,7 +32,15 @@
 		<property name="defaultViews">
 			<list>
 				<bean name="jsonView"
-					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+					class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+					 <property name="objectMapper">  
+					 <bean class="com.fasterxml.jackson.databind.ObjectMapper">
+					<property name="serializationInclusion">
+                            <value type="com.fasterxml.jackson.annotation.JsonInclude.Include">NON_NULL</value>
+                        </property> 
+                        </bean>
+                         </property> 
+				</bean>
 				<bean id="xstreamMarshaller" name="xstreamMarshaller"
 					class="org.springframework.web.servlet.view.xml.MarshallingView">
 					<property name="marshaller">
@@ -67,7 +75,7 @@
 			value="org.springframework.web.servlet.view.JstlView" />
 		<property name="prefix" value="/" />
 		<property name="suffix" value=".jsp" />
-		   <property name="contentType" value="text/html;charset=UTF-8"/>  
+		<property name="contentType" value="text/html;charset=UTF-8" />
 	</bean>
 
 </beans>

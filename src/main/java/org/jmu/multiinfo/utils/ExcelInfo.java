@@ -67,6 +67,35 @@ public class ExcelInfo {
 		return str;
 	}
 
+	public static String[][] getData(String path, int n,Integer[] rows,Integer[] cols) 
+			throws FileNotFoundException, IOException{
+		File file = new File(path);
+		HSSFWorkbook wb = new HSSFWorkbook(new FileInputStream(file));
+		HSSFSheet sheet = wb.getSheetAt(n);
+
+		int rowcount = sheet.getLastRowNum();// 取得有效的行数
+		int colcount = sheet.getRow(0).getPhysicalNumberOfCells();// 总列数
+		String[][] str = new String[rows==null?rowcount:rows.length][cols==null?colcount:cols.length];
+		HSSFRow row = null;
+		if(cols==null&&rows!=null){
+			for (int i = 0; i < rows.length; i++) {
+				row = sheet.getRow(rows[i]); // 获得第rows[i]行
+				for (int j = 0; j < colcount; j++) {
+					str[i][j] = getCellFormatValue(row.getCell(j)).trim();
+				}
+			}
+		}
+		if(rows==null&&cols!=null){
+			for (int i = 0; i <rowcount; i++) {
+				row = sheet.getRow(i); // 获得第i行
+				for (int j = 0; j < cols.length; j++) {
+					str[i][j] = getCellFormatValue(row.getCell(cols[j])).trim();
+				}
+			}
+		}
+		return str;
+	}
+	
 	public static void main(String[] args) throws FileNotFoundException,
 			IOException {
 		getData("C:/Users/bigta/Desktop/65岁和65岁以上的人口（占总人口的百分比）.xls", 0);
