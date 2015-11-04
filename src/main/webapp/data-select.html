@@ -52,8 +52,8 @@
             //AJAX - 请求点击的sheet名所对应的表单
             var sheetNum = $(this).parent().index();
             $.ajax({
-//                url: "js/testJSON/data.js",
-                url: "file/read/sheet/" + sheetNum,
+                url: "js/testJSON/data.js",
+//                url: "file/read/sheet/" + sheetNum,
                 type: "post",
                 async: true,
                 dataType: "json",
@@ -101,8 +101,8 @@
 
         //AJAX - 请求获得数据文件的每个sheet名称
         $.ajax({
-            url: "file/read/sheet",
-//            url: "js/testJSON/sheet.js",
+//            url: "file/read/sheet",
+            url: "js/testJSON/sheet.js",
             type: "post",
             async: true,
             dataType: "json",
@@ -137,11 +137,11 @@
             for (var i = 0; i < dataColNum; i++) {
                 var td = "td:eq(" + (chooseCol + i * dataRowNum) + ")";
                 $(td).removeClass("info");
-                $("#draw_btn").attr("disabled", "disabled");
             }
             selectedCol -= 1;
             if (selectedCol == 0) {
                 $("input[name='choose_row']").show();
+                $("#draw_btn").attr("disabled", "disabled");
             }
         }
     });
@@ -159,8 +159,46 @@
             selectedRow -= 1;
             if (selectedRow == 0) {
                 $("input[name='choose_col']").show();
+                $("#draw_btn").attr("disabled", "disabled");
             }
-            $("#draw_btn").attr("disabled", "disabled");
+        }
+    });
+
+    //
+    $("#draw_btn").click(function () {
+        var colList = $("input[name='choose_col']");
+        var colListIndex = new Array();
+        for (var i = 0; i < colList.length; i++) {
+            if (colList[i].checked) {
+                colListIndex.push(i);
+            }
+        }
+
+        var rowList = $("input[name='choose_row']");
+        var rowListIndex = new Array();
+        for (var i = 0; i < rowListIndex.length; i++) {
+            if (rowList[i].checked) {
+                rowListIndex.push(i);
+            }
+        }
+
+        if (colListIndex.length != 0) {
+            $.ajax({
+                url: "select/range",
+                data: {"col": colListIndex},
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+        } else {
+            $.ajax({
+                url: "select/range",
+                data: {"row": rowList},
+                success: function (data) {
+                    console.log(data);
+                }
+            });
+
         }
     });
 </script>
