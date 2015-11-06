@@ -18,13 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import com.github.abel533.echarts.axis.CategoryAxis;
 import com.github.abel533.echarts.axis.ValueAxis;
 import com.github.abel533.echarts.code.Magic;
-import com.github.abel533.echarts.code.MarkType;
 import com.github.abel533.echarts.code.Tool;
 import com.github.abel533.echarts.code.Trigger;
-import com.github.abel533.echarts.data.PointData;
 import com.github.abel533.echarts.feature.MagicType;
 import com.github.abel533.echarts.json.GsonOption;
-import com.github.abel533.echarts.series.Bar;
 import com.github.abel533.echarts.series.Line;
 
 /**
