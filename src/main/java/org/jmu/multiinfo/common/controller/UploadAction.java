@@ -35,7 +35,6 @@ public class UploadAction {
 	@ResponseBody
 	public Map<String, Object> uploadFile(HttpServletRequest request,
 			HttpSession session,@RequestParam("data_file") MultipartFile file,HttpServletResponse response) throws Exception {
-		System.out.println("asd");
 		Map<String, Object> map = new HashMap<String, Object>();
 		if(file.isEmpty()) return null;
 		String realPath = request.getSession().getServletContext()

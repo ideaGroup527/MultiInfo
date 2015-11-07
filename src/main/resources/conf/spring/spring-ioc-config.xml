@@ -16,6 +16,7 @@
 	  http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
 	  
      <context:component-scan base-package="org.jmu.multiinfo.module"/> 
+      <context:component-scan base-package="org.jmu.multiinfo.common"/> 
     <!-- 读取mysql jdbc的配置-->
     <context:property-placeholder location="classpath:conf/jdbc.properties" />
     <!-- 配置数据源，从上面配置文件读取-->

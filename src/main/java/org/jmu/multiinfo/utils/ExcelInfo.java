@@ -14,6 +14,9 @@ import org.apache.poi.hssf.usermodel.HSSFDateUtil;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.jmu.multiinfo.common.bean.ExcelBean;
+import org.jmu.multiinfo.common.bean.IDealDataCallBack;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 public class ExcelInfo {
 
@@ -67,33 +70,41 @@ public class ExcelInfo {
 		return str;
 	}
 
-	public static String[][] getData(String path, int n,Integer[] rows,Integer[] cols) 
+	public static String[] getData(String path, int n,Integer[] rows,Integer[] cols,IDealDataCallBack call) 
 			throws FileNotFoundException, IOException{
+		ExcelBean excelBean = new ExcelBean();
 		File file = new File(path);
 		HSSFWorkbook wb = new HSSFWorkbook(new FileInputStream(file));
 		HSSFSheet sheet = wb.getSheetAt(n);
 
 		int rowcount = sheet.getLastRowNum();// 取得有效的行数
 		int colcount = sheet.getRow(0).getPhysicalNumberOfCells();// 总列数
-		String[][] str = new String[rows==null?rowcount:rows.length][cols==null?colcount:cols.length];
+		String[][] orialData = new String[rows.length][cols.length];
+		
 		HSSFRow row = null;
-		if(cols==null&&rows!=null){
-			for (int i = 0; i < rows.length; i++) {
+		String[] xAxis = new String[cols.length];
+		String[] yAxis = new String[rows.length];
+		for (int i = 0; i < rows.length; i++) {
 				row = sheet.getRow(rows[i]); // 获得第rows[i]行
-				for (int j = 0; j < colcount; j++) {
-					str[i][j] = getCellFormatValue(row.getCell(j)).trim();
-				}
-			}
-		}
-		if(rows==null&&cols!=null){
-			for (int i = 0; i <rowcount; i++) {
-				row = sheet.getRow(i); // 获得第i行
 				for (int j = 0; j < cols.length; j++) {
-					str[i][j] = getCellFormatValue(row.getCell(cols[j])).trim();
+					   orialData[i][j] = getCellFormatValue(row.getCell(cols[j])).trim();
 				}
 			}
+		for(int i=0;i<cols.length;i++){
+			row = sheet.getRow(0); 
+			xAxis[i] = getCellFormatValue(row.getCell(cols[i]));// 获得第cols[i]列
 		}
-		return str;
+		for(int i=0;i<rows.length;i++){
+			row = sheet.getRow(rows[i]); // 获得第rows[i]行
+			yAxis[i] = getCellFormatValue(row.getCell(0));
+		}
+		excelBean.setData(orialData);
+		excelBean.setFileName(file.getName());
+		excelBean.setFilePath(path);
+		excelBean.setxAxis(xAxis);
+		excelBean.setyAxis(yAxis);
+		String[] result = call.dealData(excelBean);
+		return result;
 	}
 	
 	public static void main(String[] args) throws FileNotFoundException,
@@ -107,7 +118,7 @@ public class ExcelInfo {
 	 * @param cell
 	 * @return
 	 */
-	private static String getCellFormatValue(HSSFCell cell) {
+	public static String getCellFormatValue(HSSFCell cell) {
 		String cellvalue = "";
 		if (cell != null) {
 			// 判断当前Cell的Type
