@@ -87,5 +87,75 @@ public class BasicStatisticsService {
 		return map;
 	}
 	
-	
+	public Map<String,Object> maxValue(String filePath,int sheet,Integer[] rows,Integer[] cols,DimType dim) throws FileNotFoundException, IOException {
+		String[] aveResults;
+		final Map<String,Object> map = new HashMap<String,Object>();
+		switch(dim){
+		    case DIM_X_POSITION:
+		    	aveResults=	ExcelInfo.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
+					public String[] dealData(ExcelBean excelBean) {
+						// TODO Auto-generated method stub
+						String[][] orialData=excelBean.getData();
+						int ysize = orialData.length;
+						int xsize = orialData[0].length;
+						double[] result=new double[xsize];
+						for(int i=0;i<ysize;i++) result[i]=0.0;
+						for(int i=0;i<ysize;i++){
+							for(int j=0;j<xsize;j++){
+								if(i==0)
+								result[j]=Double.valueOf(orialData[i][j]);
+								else
+									result[j] = Double.valueOf(orialData[i][j])>result[j]?Double.valueOf(orialData[i][j]):result[j];
+							}
+						}
+						String[] resultStr=new String[xsize];
+						for(int i=0;i<xsize;i++){
+							resultStr[i]=String.valueOf(result[i]);
+						}
+						
+						map.put("xAxis", excelBean.getxAxis());
+						map.put("yAxis", null);
+						map.put("title", excelBean.getFileName());
+						return resultStr;
+					}
+				});
+				
+		    	break;
+		    case DIM_Y_POSITION:
+		    	aveResults=	ExcelInfo.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
+					public String[] dealData(ExcelBean excelBean) {
+						// TODO Auto-generated method stub
+						String[][] orialData=excelBean.getData();
+						int ysize = orialData.length;
+						int xsize = orialData[0].length;
+						double[] result=new double[ysize];
+						for(int i=0;i<ysize;i++) result[i]=0.0;
+						for(int i=0;i<ysize;i++){
+							for(int j=0;j<xsize;j++){
+								if(j==0)
+									result[i]=Double.valueOf(orialData[i][j]);
+									else
+										result[i] = Double.valueOf(orialData[i][j])>result[j]?Double.valueOf(orialData[i][j]):result[j];
+
+							}
+						}
+						String[] resultStr=new String[ysize];
+						for(int i=0;i<ysize;i++){
+							resultStr[i]=String.valueOf(result[i]);
+						}
+						map.put("xAxis", excelBean.getyAxis());
+						map.put("yAxis", null);
+						map.put("title", excelBean.getFileName());
+						return resultStr;
+					}
+				});
+		    	break;
+		    default:
+		    	aveResults=null;
+		    	break;
+			
+		}
+		map.put("result", aveResults);
+		return map;
+	}
 }

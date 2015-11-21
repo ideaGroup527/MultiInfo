@@ -29,7 +29,7 @@ import org.springframework.web.multipart.MultipartFile;
  */
 @Controller
 @RequestMapping("/file")
-public class UploadAction {
+public class UploadController {
 	
 	@RequestMapping(value = "/upload")
 	@ResponseBody
