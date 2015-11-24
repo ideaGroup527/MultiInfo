@@ -239,7 +239,7 @@ $("#draw_btn").click(function () {
 
     if (colListIndex.length != 0) {
         $.ajax({
-            url: "select/range",
+            url: "basic/average.json",
             type: "post",
             data: {"col[]": colListIndex, "sheet": sheetNum},
             success: function (data) {
@@ -252,7 +252,7 @@ $("#draw_btn").click(function () {
         });
     } else {
         $.ajax({
-            url: "select/range",
+            url: "basic/average.json",
             type: "post",
             data: {"row[]": rowList, "sheet": sheetNum},
             success: function (data) {
