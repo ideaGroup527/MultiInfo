@@ -31,6 +31,7 @@
             <ul class="nav nav-tabs"></ul>
             <div class="tab-content"></div>
         </div>
+        <div id="presents" style="height: 400px"></div>
     </div>
 </div>
 
@@ -55,8 +56,8 @@ $(document).ready(function () {
         //AJAX - 请求点击的sheet名所对应的表单
         var sheetNum = $(this).parent().index();
         $.ajax({
-//            url: "js/testJSON/data.js",
-            url: "file/read/sheet/" + sheetNum,
+            url: "js/testJSON/data.js",
+//            url: "file/read/sheet/" + sheetNum,
             type: "post",
             async: true,
             dataType: "json",
@@ -104,8 +105,8 @@ $(document).ready(function () {
 
     //AJAX - 请求获得数据文件的每个sheet名称
     $.ajax({
-        url: "file/read/sheet",
-//        url: "js/testJSON/sheet.js",
+//        url: "file/read/sheet",
+        url: "js/testJSON/sheet.js",
         type: "post",
         async: true,
         dataType: "json",
@@ -123,7 +124,8 @@ $(document).ready(function () {
         complete: function () {
             //加载页面后加载第一个sheet的内容
             $.ajax({
-                url: "file/read/sheet/0",
+//                url: "file/read/sheet/0",
+                url: "js/testJSON/data.js",
                 type: "post",
                 async: true,
                 dataType: "json",
@@ -223,8 +225,10 @@ $("#draw_btn").click(function () {
     for (var i = 0; i < colList.length; i++) {
         if (colList[i].checked) {
             colListIndex.push(i);
+            console.log(colListIndex);
         }
     }
+
 
     var rowList = $("input[name='choose_row']");
     var rowListIndex = new Array();
@@ -247,6 +251,7 @@ $("#draw_btn").click(function () {
                 window.location = "average.html";
             },
             error: function (msg) {
+                window.location = "average.html";
                 console.log("Uploading COL range FAILED.");
             }
         });
@@ -260,11 +265,52 @@ $("#draw_btn").click(function () {
                 console.log("Uploading ROW range SUCCESS.");
             },
             error: function (msg) {
+                window.location = "average.html";
                 console.log("Uploading ROW range FAILED.");
             }
         });
     }
 });
+</script>
+<script src="js/echarts/build/dist/echarts.js"></script>
+<script>
+    $(document).ready(function () {
+        require.config({
+            paths: {
+                echarts: 'js/echarts/build/dist/'
+            }
+        });
+
+        require(
+                [
+                    'echarts',
+                    'echarts/chart/bar' // 使用柱状图就加载bar模块，按需加载
+                ],
+                function (ec) {
+                    // 基于准备好的dom，初始化echarts图表
+                    var myChart = ec.init(document.getElementById('presents'));
+
+                    $.ajax({
+                        url: "js/testJSON/bar_option.js",
+                        type: "post",
+                        async: true,
+                        dataType: "json",
+                        success: function (data) {
+                            // 为echarts对象加载数据
+                            console.log(data);
+                            myChart.setOption(data.option);
+                            console.log()
+                        },
+                        error: function (msg) {
+                            console.log(msg);
+                            console.log(eval(msg.responseText));
+                        }
+                    })
+                }
+        );
+    });
+
+
 </script>
 </body>
 </html>

@@ -41,14 +41,15 @@
                     var myChart = ec.init(document.getElementById('presents'));
 
                     $.ajax({
-                        url: "js/testJSON/average_option.js",
+                        url: "js/testJSON/bar_option.js",
                         type: "post",
                         async: true,
                         dataType: "json",
                         success: function (data) {
                             // 为echarts对象加载数据
                             console.log(data);
-                            myChart.setOption(data);
+                            myChart.setOption(data.option);
+                            console.log()
                         },
                         error: function (msg) {
                             console.log(msg);
