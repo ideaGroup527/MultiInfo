@@ -58,7 +58,7 @@ $(document).ready(function () {
         var sheetNum = $(this).parent().index();
         $.ajax({
 //           url: "js/testJSON/data.js",
-           url: "file/read/sheet/" + sheetNum,
+           url: "data/read/sheet/" + sheetNum,
             type: "post",
             async: true,
             dataType: "json",
@@ -106,7 +106,7 @@ $(document).ready(function () {
 
     //AJAX - 请求获得数据文件的每个sheet名称
     $.ajax({
-        url: "file/read/sheet",
+        url: "data/read/sheet",
 //        url: "js/testJSON/sheet.js",
         type: "post",
         async: true,
@@ -125,7 +125,7 @@ $(document).ready(function () {
         complete: function () {
             //加载页面后加载第一个sheet的内容
             $.ajax({
-                url: "file/read/sheet/0",
+                url: "data/read/sheet/0",
  //               url: "js/testJSON/data.js",
                 type: "post",
                 async: true,
@@ -248,8 +248,10 @@ $("#draw_btn").click(function () {
             type: "post",
             data: {"col[]": colListIndex, "sheet": sheetNum},
             success: function (data) {
+            	myChart.clear();
                 console.log("Uploading COL range SUCCESS.");
                 myChart.setOption(data.option);
+                myChart.refresh();
             },
             error: function (msg) {
                // window.location = "average.html";
@@ -258,11 +260,13 @@ $("#draw_btn").click(function () {
         });
     } else {
         $.ajax({
-            url: "basic/average",
+            url: "basic/average.json",
             type: "post",
-            data: {"row[]": rowList, "sheet": sheetNum},
+            data: {"row[]": rowListIndex, "sheet": sheetNum},
             success: function (data) {
+            	 myChart.clear();
             	 myChart.setOption(data.option);
+            	 myChart.refresh();
                 console.log("Uploading ROW range SUCCESS.");
             },
             error: function (msg) {

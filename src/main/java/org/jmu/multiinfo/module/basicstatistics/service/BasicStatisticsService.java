@@ -34,7 +34,7 @@ public class BasicStatisticsService {
 						int ysize = orialData.length;
 						int xsize = orialData[0].length;
 						double[] result=new double[xsize];
-						for(int i=0;i<ysize;i++) result[i]=0.0;
+						for(int i=0;i<xsize;i++) result[i]=0.0;
 						for(int i=0;i<ysize;i++){
 							for(int j=0;j<xsize;j++){
 								result[j]+=Double.valueOf(orialData[i][j]);

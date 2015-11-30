@@ -10,9 +10,13 @@ import javax.servlet.http.HttpSession;
 
 import org.jmu.multiinfo.utils.CommonUtil;
 import org.jmu.multiinfo.utils.ExcelInfoUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
@@ -28,10 +32,12 @@ import org.springframework.web.multipart.MultipartFile;
 * @version V1.0
  */
 @Controller
-@RequestMapping("/file")
+@RequestMapping("/data")
 public class UploadController {
 	
-	@RequestMapping(value = "/upload")
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	
+	@RequestMapping(value = "/file",method=RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> uploadFile(HttpServletRequest request,
 			HttpSession session,@RequestParam("data_file") MultipartFile file,HttpServletResponse response) throws Exception {
@@ -62,6 +68,18 @@ public class UploadController {
 		return map;
 		
 	}
+	
+	@RequestMapping(value = "/file",method=RequestMethod.DELETE)
+	@ResponseBody
+	public Map<String, Object> deleteFile(HttpServletRequest request,
+			HttpSession session,HttpServletResponse response) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		logger.debug("remove file path"+session.getAttribute("path"));
+		session.removeAttribute("path");
+		map.put("status", true);
+		return map;
+	}
+	
 	/**
 	 * 
 	 * @Description: 读取文件
