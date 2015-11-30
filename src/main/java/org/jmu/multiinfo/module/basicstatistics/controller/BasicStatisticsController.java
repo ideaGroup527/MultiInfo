@@ -79,7 +79,7 @@ public class BasicStatisticsController {
 		 bar.data(data);
 		 option.series(bar);
 		 map.put("option", option);
-		 ModelAndView mav=new ModelAndView("select/test1",map);
+		 ModelAndView mav=new ModelAndView("average",map);
 		return mav;
 	}
 	

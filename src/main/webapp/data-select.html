@@ -23,6 +23,7 @@
 
         <h3>MultiInfo - Data Select</h3>
         <hr/>
+         <div id="presents" style="height: 400px"></div>
         <div>
             <button type="button" id="draw_btn" class="btn btn-primary" disabled="disabled" style="float:right;"
                     data-toggle="tooltip" title="选中数据，进入下一步"
@@ -31,7 +32,7 @@
             <ul class="nav nav-tabs"></ul>
             <div class="tab-content"></div>
         </div>
-        <div id="presents" style="height: 400px"></div>
+       
     </div>
 </div>
 
@@ -43,7 +44,7 @@
 <script>
 var dataColNum = 0;
 var dataRowNum = 0;
-
+var myChart;
 $(document).ready(function () {
 
     $(document).on("click", "li a", function (e) {
@@ -56,8 +57,8 @@ $(document).ready(function () {
         //AJAX - 请求点击的sheet名所对应的表单
         var sheetNum = $(this).parent().index();
         $.ajax({
-            url: "js/testJSON/data.js",
-//            url: "file/read/sheet/" + sheetNum,
+//           url: "js/testJSON/data.js",
+           url: "file/read/sheet/" + sheetNum,
             type: "post",
             async: true,
             dataType: "json",
@@ -105,8 +106,8 @@ $(document).ready(function () {
 
     //AJAX - 请求获得数据文件的每个sheet名称
     $.ajax({
-//        url: "file/read/sheet",
-        url: "js/testJSON/sheet.js",
+        url: "file/read/sheet",
+//        url: "js/testJSON/sheet.js",
         type: "post",
         async: true,
         dataType: "json",
@@ -124,8 +125,8 @@ $(document).ready(function () {
         complete: function () {
             //加载页面后加载第一个sheet的内容
             $.ajax({
-//                url: "file/read/sheet/0",
-                url: "js/testJSON/data.js",
+                url: "file/read/sheet/0",
+ //               url: "js/testJSON/data.js",
                 type: "post",
                 async: true,
                 dataType: "json",
@@ -248,24 +249,24 @@ $("#draw_btn").click(function () {
             data: {"col[]": colListIndex, "sheet": sheetNum},
             success: function (data) {
                 console.log("Uploading COL range SUCCESS.");
-                window.location = "average.html";
+                myChart.setOption(data.option);
             },
             error: function (msg) {
-                window.location = "average.html";
+               // window.location = "average.html";
                 console.log("Uploading COL range FAILED.");
             }
         });
     } else {
         $.ajax({
-            url: "basic/average.json",
+            url: "basic/average",
             type: "post",
             data: {"row[]": rowList, "sheet": sheetNum},
             success: function (data) {
-                window.location = "average.html";
+            	 myChart.setOption(data.option);
                 console.log("Uploading ROW range SUCCESS.");
             },
             error: function (msg) {
-                window.location = "average.html";
+                //window.location = "average.html";
                 console.log("Uploading ROW range FAILED.");
             }
         });
@@ -288,10 +289,10 @@ $("#draw_btn").click(function () {
                 ],
                 function (ec) {
                     // 基于准备好的dom，初始化echarts图表
-                    var myChart = ec.init(document.getElementById('presents'));
+                     myChart = ec.init(document.getElementById('presents'));
 
                     $.ajax({
-                        url: "js/testJSON/bar_option.js",
+                        url: "basic/average.json",
                         type: "post",
                         async: true,
                         dataType: "json",
