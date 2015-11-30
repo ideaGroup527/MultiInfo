@@ -18,7 +18,7 @@ import org.jmu.multiinfo.common.bean.ExcelBean;
 import org.jmu.multiinfo.common.bean.IDealDataCallBack;
 import org.springframework.jdbc.core.JdbcTemplate;
 
-public class ExcelInfo {
+public class ExcelInfoUtil {
 
 	/**
 	 * 
@@ -70,6 +70,18 @@ public class ExcelInfo {
 		return str;
 	}
 
+	
+	/****
+	 *  包含一个回调函数的数据处理，业务层实现IDealDataCallBack实现不同处理算法
+	 * @param path
+	 * @param n
+	 * @param rows
+	 * @param cols
+	 * @param call
+	 * @return
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public static String[] getData(String path, int n,Integer[] rows,Integer[] cols,IDealDataCallBack call) 
 			throws FileNotFoundException, IOException{
 		ExcelBean excelBean = new ExcelBean();

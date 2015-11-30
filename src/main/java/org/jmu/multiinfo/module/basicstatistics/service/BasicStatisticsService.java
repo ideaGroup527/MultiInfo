@@ -8,7 +8,7 @@ import java.util.Map;
 import org.jmu.multiinfo.common.bean.DimType;
 import org.jmu.multiinfo.common.bean.ExcelBean;
 import org.jmu.multiinfo.common.bean.IDealDataCallBack;
-import org.jmu.multiinfo.utils.ExcelInfo;
+import org.jmu.multiinfo.utils.ExcelInfoUtil;
 import org.springframework.stereotype.Service;
 
 /**
@@ -27,7 +27,7 @@ public class BasicStatisticsService {
 		final Map<String,Object> map = new HashMap<String,Object>();
 		switch(dim){
 		    case DIM_X_POSITION:
-		    	aveResults=	ExcelInfo.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
+		    	aveResults=	ExcelInfoUtil.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
 					public String[] dealData(ExcelBean excelBean) {
 						// TODO Auto-generated method stub
 						String[][] orialData=excelBean.getData();
@@ -54,7 +54,7 @@ public class BasicStatisticsService {
 				
 		    	break;
 		    case DIM_Y_POSITION:
-		    	aveResults=	ExcelInfo.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
+		    	aveResults=	ExcelInfoUtil.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
 					public String[] dealData(ExcelBean excelBean) {
 						// TODO Auto-generated method stub
 						String[][] orialData=excelBean.getData();
@@ -92,7 +92,7 @@ public class BasicStatisticsService {
 		final Map<String,Object> map = new HashMap<String,Object>();
 		switch(dim){
 		    case DIM_X_POSITION:
-		    	aveResults=	ExcelInfo.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
+		    	aveResults=	ExcelInfoUtil.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
 					public String[] dealData(ExcelBean excelBean) {
 						// TODO Auto-generated method stub
 						String[][] orialData=excelBean.getData();
@@ -122,7 +122,7 @@ public class BasicStatisticsService {
 				
 		    	break;
 		    case DIM_Y_POSITION:
-		    	aveResults=	ExcelInfo.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
+		    	aveResults=	ExcelInfoUtil.getData(filePath, sheet,rows,cols,new IDealDataCallBack() {
 					public String[] dealData(ExcelBean excelBean) {
 						// TODO Auto-generated method stub
 						String[][] orialData=excelBean.getData();

@@ -10,7 +10,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.jmu.multiinfo.common.bean.DimType;
 import org.jmu.multiinfo.common.bean.IDealDataCallBack;
 import org.jmu.multiinfo.module.basicstatistics.service.BasicStatisticsService;
-import org.jmu.multiinfo.utils.ExcelInfo;
+import org.jmu.multiinfo.utils.ExcelInfoUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

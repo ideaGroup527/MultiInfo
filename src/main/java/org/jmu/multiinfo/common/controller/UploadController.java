@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.jmu.multiinfo.utils.CommonUtil;
-import org.jmu.multiinfo.utils.ExcelInfo;
+import org.jmu.multiinfo.utils.ExcelInfoUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,7 +77,7 @@ public class UploadController {
 
 		if (path != null && path.length() > 0) {
 			map.put("status", true);
-			map.put("sheet", ExcelInfo.getSheet(path));
+			map.put("sheet", ExcelInfoUtil.getSheet(path));
 		} else {
 			map.put("status", true);
 			map.put("msg", "请先上传文件！");
@@ -102,7 +102,7 @@ public class UploadController {
 
 		if (path != null && path.length() > 0) {
 			map.put("status", true);
-			map.put("data", ExcelInfo.getData(path, n));
+			map.put("data", ExcelInfoUtil.getData(path, n));
 		} else {
 			map.put("status", true);
 			map.put("msg", "请先上传文件！");
