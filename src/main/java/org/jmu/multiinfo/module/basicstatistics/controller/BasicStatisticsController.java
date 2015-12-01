@@ -52,16 +52,19 @@ public class BasicStatisticsController {
 	@ResponseBody
 	public ModelAndView average(HttpServletRequest request,HttpSession session,
 			@RequestParam(value="row[]", required=false) Integer[] rows,@RequestParam(value="col[]", required=false) Integer[] cols,
-			@RequestParam(value="sheet",required=false,defaultValue="0") int sheet) throws Exception{
+			@RequestParam(value="sheet",required=false,defaultValue="0") int sheet,@RequestParam(value="dim",required=false) String dimStr) throws Exception{
 		logger.debug("Enter range");
 		Map<String, Object> map = new HashMap<String, Object>();
 		GsonOption option = new GsonOption();
 		StringBuilder sb = new StringBuilder();
+		DimType dim = null;
 		if(rows==null){
 			rows=new Integer[]{1,2,3};
+			dim = DimType.DIM_Y_POSITION;
 		}
 		if(cols==null){
 			cols=new Integer[]{2,3,5};
+			dim = DimType.DIM_X_POSITION;
 		}
 		logger.debug((rows!=null?rows.length:0)+" "+(cols!=null?cols.length:0));
 		for (int i = 0; i < cols.length; i++) {
@@ -69,7 +72,8 @@ public class BasicStatisticsController {
 		}
 		logger.debug(sb.toString()+"sheet:"+sheet);
 		String path = (String) session.getAttribute("path");
-		Map<String, Object> result=	basicStatisticsService.average(path, sheet, rows, cols, DimType.DIM_X_POSITION);
+		
+		Map<String, Object> result=	basicStatisticsService.average(path, sheet, rows, cols, dim);
 		String[] xAxis = (String[]) result.get("xAxis");
 		 option.xAxis(new CategoryAxis().data(xAxis));
 		 option.yAxis(new ValueAxis());
