@@ -1,9 +1,9 @@
 package org.jmu.multiinfo.common.util;
 
 import java.math.BigDecimal;
-import java.math.BigInteger;
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.Arrays;
+import java.util.Collections;
 
 /***
  * 
@@ -106,42 +106,162 @@ public class CalculateUtil {
 	 */
 	public static <T extends Number> ArrayList<Double> findAverage(T[][] data){
 		int rowSize  = data.length;
-		int colSize = data[0].length;
-		ArrayList<Double> average = new ArrayList<Double>(data.length);
-		double temp ;
+		ArrayList<Double> average = new ArrayList<Double>(rowSize);
 		for (int i = 0; i < rowSize; i++) {
-			temp = 0.0;
-			for (int j = 0; j < colSize ; j++) {
-				temp+=data[i][j].doubleValue();
-			}
-			average.add(temp/colSize);
+			average.add(findAverage(data[i]));
 		}
 		return average;
 	}
 
+	private static <T extends Number> Double findAverage(T[] data){
+		int rowSize  = data.length;
+		Double temp =0.0;
+		for (int i = 0; i < rowSize; i++) {
+			temp+=data[i].doubleValue();
+		}
+		return (temp/rowSize);
+	}
+	
+	
 	/***
 	 * 
 	 * @param data
 	 * @return 每个列平均值
 	 */
 	public static <T extends Number> ArrayList<Double> findColAverage(T[][] data){
+		
 		int rowSize  = data.length;
 		int colSize = data[0].length;
+		Double[] temp = new Double[rowSize];
 		ArrayList<Double> average = new ArrayList<Double>(colSize);
-		for (int i = 0; i < colSize; i++) {
-			average.add(i, 0.0);
-		}
-		for (int i = 0; i < rowSize; i++) {
-			for (int j = 0; j < colSize; j++) {
-				average.set(j,average.get(j)+data[i][j].doubleValue());
+		for (int j = 0; j < colSize; j++) {
+			for (int i = 0; i < rowSize; i++) {
+				temp[i] = data[i][j].doubleValue();
 			}
-		}
-		for (int i = 0; i < colSize; i++) {
-			average.set(i, average.get(i)/rowSize);
+			average.add(findAverage(temp));
 		}
 		return average;
 	}
 	
+	/***
+	 * 
+	 * @param data
+	 * @return 每个维度中位数
+	 */
+	public static <T extends Number> ArrayList<Double> findMedian(T[][] data){
+		int rowSize  = data.length;
+		int colSize = data[0].length;
+		ArrayList<Double> median = new ArrayList<Double>(rowSize);
+		T[] temp;
+		double res;
+		for (int i = 0; i < rowSize; i++) {
+			temp = Arrays.copyOf(data[i], colSize);
+			Arrays.sort(temp);
+			if(colSize%2==0){//偶数长度，中位数
+				res = (temp[colSize/2-1].doubleValue()+temp[colSize/2].doubleValue())/2.0;
+			}else{
+				res = temp[colSize/2].doubleValue();
+			}
+
+			median.add(res);
+		}
+		return median;
+	}
+	
+	
+	/***
+	 * 
+	 * @param data
+	 * @return 每个列中位数
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends Number> ArrayList<Double> findColMedian(T[][] data){
+		int rowSize  = data.length;
+		int colSize = data[0].length;
+		ArrayList<Double>[] temp =new ArrayList[colSize];
+		ArrayList<Double> median =new ArrayList<Double>(rowSize);
+		double res;
+		
+		for (int i = 0; i < rowSize; i++) {
+			for (int j = 0; j < colSize; j++) {
+				if(temp[j]==null) temp[j]=new ArrayList<Double>();
+				temp[j].add(data[i][j].doubleValue());
+			}
+		}
+		
+		for (int i = 0; i < colSize; i++) {
+			Collections.sort(temp[i]);
+			if(rowSize%2==0){//偶数长度，中位数
+				res = (temp[i].get(rowSize/2-1)+temp[i].get(rowSize/2))/2.0;
+			}else{
+				res = temp[i].get(rowSize/2);
+			}
+
+			median.add(res);
+		}
+		return median;
+	}
+	
+	
+	/***
+	 * 
+	 * @param data
+	 * @return 每个维度方差
+	 */
+	public static <T extends Number> ArrayList<Double> findVariance(T[][] data){
+		int rowSize  = data.length;
+		int colSize = data[0].length;
+		ArrayList<Double> variance = new ArrayList<Double>(rowSize);
+		T[] temp;
+		
+		
+		for (int i = 0; i < rowSize; i++) {
+			temp = Arrays.copyOf(data[i], colSize);
+			variance.add(findVariance(temp));
+		}
+		return variance;
+	}
+	
+	private static <T extends Number> Double findVariance(T[] data){
+		Double average = findAverage(data);
+		Double temp = 0.0;
+		int counts  = data.length;
+		for (int i = 0; i < counts; i++) {
+			temp+=(data[i].doubleValue()-average)*(data[i].doubleValue()-average);
+		}
+		return (temp/counts);
+	}
+	
+	
+	/***
+	 * 
+	 * @param data
+	 * @return 每个维度样本标准差
+	 */
+	public static <T extends Number> ArrayList<Double> findStdDev(T[][] data){
+		int rowSize  = data.length;
+		int colSize = data[0].length;
+		ArrayList<Double> stdDev = new ArrayList<Double>(rowSize);
+		T[] temp;
+		
+		for (int i = 0; i < rowSize; i++) {
+			temp = Arrays.copyOf(data[i], colSize);
+			stdDev.add(findStdDev(temp));
+		}
+		return stdDev;
+	}
+	
+	
+	private static <T extends Number> Double findStdDev(T[] data){
+		Double average = findAverage(data);
+		Double temp = 0.0;
+		int counts  = data.length;
+		for (int i = 0; i < counts; i++) {
+			temp+=(data[i].doubleValue()-average)*(data[i].doubleValue()-average);
+		}
+		if(temp/counts == 0) return 0.0;
+		return Math.sqrt((temp/counts-1));
+	}
 	
 	/***
 	 * 
@@ -180,14 +300,27 @@ public class CalculateUtil {
 	}
 	
 	
+	
 	public static void main(String[] args) {
 		Double[][] aaa = { { 1.6, 3.8, 6.7, 78.0, 9.6 }, { 2.3, 3.6, 5.5, 7.7, 2.8 }, { 6.2, 84.3, 7.3, 7.2, 8.9 },
-				{ 11111.1, 2222.2, 3.4, 6.2, 7.2 },{ 11.1, 62.2, 30.4, 6.2, 7.2 } ,{ 1.1, 2.2, 3.3, 4.4, 5.5 } };
-		ArrayList<Double> a = CalculateUtil.findColAverage(aaa);
+				{ 11111.1, 2222.2, 3.4, 6.2, 7.2 },{ 11.1, 62.2, 30.4, 6.2, 7.2 } ,{ 1.1, 2.2, 3.3, 4.4, 5.5 }
+				,{ 1.0,1.0,1.0,1.0,1.0}};
+		BigDecimal[][] bigs = new BigDecimal[aaa.length][aaa[0].length];
+		for (int i = 0; i < aaa.length; i++) {
+			for (int j = 0; j < aaa[0].length; j++) {
+				bigs[i][j] = new BigDecimal(aaa[i][j]);
+				
+			}
+		}
+		
+		
+		ArrayList<Double> a = CalculateUtil.findStdDev(aaa);
 
+		
 		for (Object double1 : a) {
 			System.out.println(double1);
 		}
+		
 		
 	}
 
