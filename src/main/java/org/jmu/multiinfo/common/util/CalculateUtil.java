@@ -24,20 +24,26 @@ public class CalculateUtil {
 	 */
 	public static <T extends Comparable<T>> ArrayList<T> findMax(T[][] data) {
 		int rowSize  = data.length;
-		int colSize = data[0].length;
 		ArrayList<T> maxi = new ArrayList<T>(rowSize);
 		T temp;
 		for (int i = 0; i < rowSize; i++) {
-
-			temp = data[i][0];
-			for (int j = 0; j < colSize; j++) {
-				temp = temp.compareTo(data[i][j]) > 0 ? temp : data[i][j];
-			}
+			temp = findMax(data[i]);
 			maxi.add(temp);
 		}
 		return maxi;
 	}
 
+
+	private static <T extends Comparable<T>> T findMax(T[] data) {
+		int counts  = data.length;
+		T temp = data[0];
+		for (int i = 0; i < counts; i++) {
+				temp = temp.compareTo(data[i]) > 0 ? temp : data[i];
+		}
+		return temp;
+	}
+
+	
 	/***
 	 * 
 	 * @param data
@@ -65,18 +71,53 @@ public class CalculateUtil {
 	 */
 	public static <T extends Comparable<T>> ArrayList<T> findMin(T[][] data) {
 		int rowSize  = data.length;
-		int colSize = data[0].length;
 		ArrayList<T> mini = new ArrayList<T>(rowSize);
 		T temp;
 		for (int i = 0; i < rowSize; i++) {
 
-			temp = data[i][0];
-			for (int j = 0; j < colSize; j++) {
-				temp = temp.compareTo(data[i][j]) < 0 ? temp : data[i][j];
-			}
+			temp =findMin(data[i]);
 			mini.add(temp);
 		}
 		return mini;
+	}
+	
+
+	private static <T extends Comparable<T>> T findMin(T[] data) {
+		int counts  = data.length;
+		T temp = data[0];
+		for (int i = 0; i < counts; i++) {
+				temp = temp.compareTo(data[i]) < 0 ? temp : data[i];
+		}
+		return temp;
+	}
+	
+	
+	/***
+	 * 
+	 * @param data
+	 * @return 每个维度极差
+	 */
+	public static <T extends Comparable<T>> ArrayList<T> findRange(T[][] data) {
+		int rowSize  = data.length;
+		ArrayList<T> range = new ArrayList<T>(rowSize);
+		T temp;
+		for (int i = 0; i < rowSize; i++) {
+			temp = (T) findRange(data[i]);
+			range.add(temp);
+		}
+		return range;
+	}
+	
+	private static <T extends Comparable<T>> Double findRange(T[] data) {
+		T max = findMax(data);
+		T min = findMin(data);
+		Double temp = 0.0 ;
+		if((max instanceof Number) && (min instanceof Number)){
+		 temp=	(((Number) max).doubleValue())-(((Number) min).doubleValue());
+			
+		}
+		
+		return temp;
 	}
 	
 	/***
@@ -302,7 +343,7 @@ public class CalculateUtil {
 	
 	
 	public static void main(String[] args) {
-		Double[][] aaa = { { 1.6, 3.8, 6.7, 78.0, 9.6 }, { 2.3, 3.6, 5.5, 7.7, 2.8 }, { 6.2, 84.3, 7.3, 7.2, 8.9 },
+		Double[][] aaa = { { 1.6, 3.8, 6.7, 78.0, 9.6 }, { -2.3, 3.6, 5.5, 7.7, 2.8 }, { 6.2, 84.3, 7.3, 7.2, 8.9 },
 				{ 11111.1, 2222.2, 3.4, 6.2, 7.2 },{ 11.1, 62.2, 30.4, 6.2, 7.2 } ,{ 1.1, 2.2, 3.3, 4.4, 5.5 }
 				,{ 1.0,1.0,1.0,1.0,1.0}};
 		BigDecimal[][] bigs = new BigDecimal[aaa.length][aaa[0].length];
@@ -314,7 +355,7 @@ public class CalculateUtil {
 		}
 		
 		
-		ArrayList<Double> a = CalculateUtil.findStdDev(aaa);
+		ArrayList<Double> a = CalculateUtil.findRange(aaa);
 
 		
 		for (Object double1 : a) {
