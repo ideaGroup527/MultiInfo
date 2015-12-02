@@ -4,6 +4,8 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /***
  * 
@@ -274,6 +276,18 @@ public class CalculateUtil {
 	}
 	
 	
+	private static <T extends Number> Double findVariance(T[] x,T[] y){
+		Double xAve = findAverage(x);
+		Double yAve = findAverage(y);
+		Double temp = 0.0;
+		int counts  = x.length;
+		for (int i = 0; i < counts; i++) {
+			temp+=(x[i].doubleValue()-xAve)*(y[i].doubleValue()-yAve);
+		}
+		return (temp/counts);
+	}
+	
+	
 	/***
 	 * 
 	 * @param data
@@ -341,7 +355,39 @@ public class CalculateUtil {
 	}
 	
 	
+	public final String LinearRegression_A = "a";
+	public final String LinearRegression_B = "b";
 	
+	
+	/**
+	 * 	  最小二乘法 线性回归
+	 *  y = a x + b
+	 *  LinearRegression_A
+	 *  LinearRegression_B
+	 * @param x
+	 * @param y
+	 * @return map LinearRegression_A LinearRegression_B
+	 */
+	public static <T extends Number> Map<String,Double> LinearRegression(T[] x , T[] y ){
+		Map<String,Double> res = new HashMap<String,Double>();
+		double n = x.length;
+		double b =  ((findVariance(x,y)*n)/(findVariance(x)*n));
+		double a = findAverage(y)- b * findAverage(x);
+		res.put("a", a);
+		res.put("b", b);
+		return res;
+	}
+	
+	
+	private static <T extends Number> Double sum(T[] data) {
+		Double sum=0.0;
+		for (T t : data) {
+			sum+=t.doubleValue();
+		}
+		return sum;
+	}
+
+
 	public static void main(String[] args) {
 		Double[][] aaa = { { 1.6, 3.8, 6.7, 78.0, 9.6 }, { -2.3, 3.6, 5.5, 7.7, 2.8 }, { 6.2, 84.3, 7.3, 7.2, 8.9 },
 				{ 11111.1, 2222.2, 3.4, 6.2, 7.2 },{ 11.1, 62.2, 30.4, 6.2, 7.2 } ,{ 1.1, 2.2, 3.3, 4.4, 5.5 }
