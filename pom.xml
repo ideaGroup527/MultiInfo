@@ -1,50 +1,58 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>org.jmu</groupId>
-  <artifactId>MultiInfo</artifactId>
-  <packaging>war</packaging>
-  <version>0.0.1-SNAPSHOT</version>
-  <name>MultiInfo Maven Webapp</name>
-  <url>http://maven.apache.org</url>
-  <properties>
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jmu</groupId>
+	<artifactId>MultiInfo</artifactId>
+	<packaging>war</packaging>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>MultiInfo Maven Webapp</name>
+	<url>http://maven.apache.org</url>
+	<properties>
 		<org.springframework.version>4.1.6.RELEASE</org.springframework.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-  <dependencies>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>4.10</version>
-      <scope>test</scope>
-    </dependency>
-<!--     ECharts -->
-    <dependency>
-  <groupId>com.github.abel533</groupId>
-  <artifactId>ECharts</artifactId>
-  <version>2.2.6</version>
-</dependency>
-<dependency>
-    <groupId>com.google.code.gson</groupId>
-    <artifactId>gson</artifactId>
-    <version>2.3</version>
-</dependency>
-<!--     ECharts  END-->
-    <!--     poi -->
-    <dependency>
-	<groupId>org.apache.poi</groupId>
-	<artifactId>poi</artifactId>
-	<version>3.12</version>
-</dependency>
-<dependency>
-	<groupId>org.apache.poi</groupId>
-	<artifactId>poi-ooxml</artifactId>
-	<version>3.12</version>
-</dependency>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.10</version>
+			<scope>test</scope>
+		</dependency>
+		<!-- ECharts -->
+		<dependency>
+			<groupId>com.github.abel533</groupId>
+			<artifactId>ECharts</artifactId>
+			<version>2.2.6</version>
+		</dependency>
+		<dependency>
+			<groupId>com.google.code.gson</groupId>
+			<artifactId>gson</artifactId>
+			<version>2.3</version>
+		</dependency>
+		<!-- ECharts END -->
+		<!-- matrix -->
+		<dependency>
+			<groupId>com.googlecode.matrix-toolkits-java</groupId>
+			<artifactId>mtj</artifactId>
+			<version>1.0.2</version>
+		</dependency>
+		<!-- matrix END -->
 
-<!--     poi END-->
-    
-    <!-- javaee 6 -->
+		<!-- poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>3.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>3.12</version>
+		</dependency>
+
+		<!-- poi END -->
+
+		<!-- javaee 6 -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>jstl</artifactId>
@@ -78,15 +86,15 @@
 			<version>3.0.1</version>
 			<scope>provided</scope>
 		</dependency>
-		<!-- javaee 6 END-->
-		
+		<!-- javaee 6 END -->
+
 		<!-- slf4j -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>1.7.2</version>
 		</dependency>
-		
+
 		<!-- spring 4.1.6 -->
 		<!-- Proxy-based AOP support -->
 		<dependency>
@@ -182,7 +190,7 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework.version}</version>
 		</dependency>
-		<!-- spring 4.1.6 END-->
+		<!-- spring 4.1.6 END -->
 
 		<!-- Apache Commons -->
 		<dependency>
@@ -225,8 +233,8 @@
 			<artifactId>commons-configuration</artifactId>
 			<version>1.10</version>
 		</dependency>
-		<!-- Apache Commons END-->
-		
+		<!-- Apache Commons END -->
+
 		<!-- c3p0 datasource -->
 		<dependency>
 			<groupId>c3p0</groupId>
@@ -263,9 +271,9 @@
 			<artifactId>jackson-annotations</artifactId>
 			<version>2.1.0</version>
 		</dependency>
-    
-  </dependencies>
-  <build>
-    <finalName>MultiInfo</finalName>
-  </build>
+
+	</dependencies>
+	<build>
+		<finalName>MultiInfo</finalName>
+	</build>
 </project>
